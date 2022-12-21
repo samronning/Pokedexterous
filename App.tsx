@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from "react";
+import { View, Text } from "react-native";
+import MainMenu from "./components/Menu/MainMenu";
+import commonstyles from "./commonstyles";
+import { Pokedex, Moves } from "./screens";
+import colors from "./colors";
+
+type DisplayPageProps = {
+  page: string;
+};
+const DisplayPage = (props: DisplayPageProps) => {
+  const { page } = props;
+  switch (page) {
+    case "Pokedex":
+      return <Pokedex />;
+    case "Moves":
+      return <Moves />;
+    default:
+      return (
+        <View style={commonstyles.centeredView}>
+          <Text style={commonstyles.errorText}>Page not found!</Text>
+        </View>
+      );
+  }
+};
 
 export default function App() {
+  const [page, setPage] = useState("Pokedex");
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 6, backgroundColor: colors.light }}>
+        <DisplayPage page={page} />
+      </View>
+      <View style={{ flex: 1 }}>
+        <MainMenu page={page} />
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
