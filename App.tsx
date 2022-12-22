@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text } from "react-native";
 import MainMenu from "./components/Menu/MainMenu";
+import OverlayMenu from "./components/Menu/Overlay/OverlayMenu";
 import commonstyles from "./commonstyles";
 import { Pokedex, Moves } from "./screens";
 import colors from "./colors";
@@ -30,6 +31,7 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <View style={{ flex: 6, backgroundColor: colors.light }}>
         <DisplayPage page={page} />
+        <OverlayMenu page={page} />
       </View>
       <View style={{ flex: 1 }}>
         <MainMenu page={page} />

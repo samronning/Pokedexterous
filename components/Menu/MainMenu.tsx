@@ -2,6 +2,8 @@ import { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import commonstyles from "../../commonstyles";
 import colors from "../../colors";
+import sizes from "../../sizes";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 type ClosedMenuProps = {
   page: string;
@@ -11,7 +13,11 @@ const ClosedMenu = (props: ClosedMenuProps) => {
   const { page } = props;
   return (
     <View style={styles.closedMenu}>
-      <Image style={{height: 10*3, width: 13.3*3}}source={require("../../assets/arrow.png")} />
+      <FontAwesome
+        name="arrow-up"
+        color={colors.light}
+        size={sizes.icon.small}
+      />
       <Text style={styles.text}>{page}</Text>
     </View>
   );

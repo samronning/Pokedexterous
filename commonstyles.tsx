@@ -10,5 +10,15 @@ const commonstyles = StyleSheet.create({
   errorText: {
     color: colors.errorText,
   },
+  bottomRightOverlay: {
+    flex: 1,
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+  },
+  primaryCenteredText: {
+    color: colors.primary,
+    textAlign: "center",
+  },
 });
 export default commonstyles;
