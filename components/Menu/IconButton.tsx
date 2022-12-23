@@ -24,7 +24,6 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
       style={{
         width: chosenSize*2,
         height: chosenSize*2,
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
       }}

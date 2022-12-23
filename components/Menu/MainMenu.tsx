@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import commonstyles from "../../commonstyles";
 import colors from "../../colors";
-import IconButton from "./IconButton";
+import AnimatedArrowIconButton from "./AnimatedArrowIconButton";
 
 type ClosedMenuProps = {
   page: string;
@@ -12,13 +12,7 @@ const ClosedMenu = (props: ClosedMenuProps) => {
   const { page } = props;
   return (
     <View style={styles.closedMenu}>
-      <IconButton
-        color="light"
-        highlightColor="light"
-        iconName="arrow-up"
-        onPress={() => {}}
-        size="small"
-      />
+      <AnimatedArrowIconButton onPress={() => {}} />
       <Text style={styles.text}>{page}</Text>
     </View>
   );
@@ -47,11 +41,12 @@ const styles = StyleSheet.create({
   closedMenu: {
     ...commonstyles.centeredView,
     backgroundColor: colors.primary,
+    flex: 1,
   },
   text: {
     color: colors.light,
     fontSize: 24,
-    marginBottom: 12
+    marginBottom: 12,
   },
 });
 
