@@ -2,8 +2,7 @@ import { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import commonstyles from "../../commonstyles";
 import colors from "../../colors";
-import sizes from "../../sizes";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import IconButton from "./IconButton";
 
 type ClosedMenuProps = {
   page: string;
@@ -13,10 +12,12 @@ const ClosedMenu = (props: ClosedMenuProps) => {
   const { page } = props;
   return (
     <View style={styles.closedMenu}>
-      <FontAwesome
-        name="arrow-up"
-        color={colors.light}
-        size={sizes.icon.small}
+      <IconButton
+        color="light"
+        highlightColor="light"
+        iconName="arrow-up"
+        onPress={() => {}}
+        size="small"
       />
       <Text style={styles.text}>{page}</Text>
     </View>
@@ -48,7 +49,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   text: {
-    color: colors.lightText,
+    color: colors.light,
+    fontSize: 24,
+    marginBottom: 12
   },
 });
 

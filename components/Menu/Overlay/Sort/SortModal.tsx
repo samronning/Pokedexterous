@@ -1,14 +1,11 @@
-import OverlayButton from "../OverlayButton";
+import IconModal from "../../IconModal";
+import { Text } from "react-native";
 
 const SortModal = () => {
   return (
-    <OverlayButton
-      onPress={() => {
-        return null;
-      }}
-      iconName='sort'
-      text="Sort"
-    />
+    <IconModal iconName="sort" color="primary" title="Sort">
+      <Text>Hello</Text>
+    </IconModal>
   );
 };
 

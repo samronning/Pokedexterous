@@ -1,14 +1,11 @@
-import OverlayButton from "../OverlayButton";
+import IconModal from "../../IconModal";
+import { Text } from "react-native";
 
 const ViewModal = () => {
   return (
-    <OverlayButton
-      onPress={() => {
-        return null;
-      }}
-      iconName="eye"
-      text="View"
-    />
+    <IconModal iconName="eye" color="primary" title="View">
+      <Text>Hello</Text>
+    </IconModal>
   );
 };
 
