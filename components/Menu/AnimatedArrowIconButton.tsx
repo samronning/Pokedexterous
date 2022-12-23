@@ -8,16 +8,16 @@ type AnimatedArrowIconButtonProps = {
 const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
   const { onPress } = props;
   const [isDown, setIsDown] = useState(false);
-  const rotation = useRef(new Animated.Value(0));
-  const spinDown = Animated.spring(rotation.current, {
+  const rotationRef = useRef(new Animated.Value(0));
+  const spinDown = Animated.spring(rotationRef.current, {
     toValue: 1,
     useNativeDriver: true,
   });
-  const spinUp = Animated.spring(rotation.current, {
+  const spinUp = Animated.spring(rotationRef.current, {
     toValue: 0,
     useNativeDriver: true,
   });
-  const rotationDeg = rotation.current.interpolate({
+  const rotationDeg = rotationRef.current.interpolate({
     inputRange: [0, 1],
     outputRange: ["0deg", "180deg"],
   });

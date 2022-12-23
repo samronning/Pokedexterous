@@ -28,14 +28,14 @@ const DisplayPage = (props: DisplayPageProps) => {
 export default function App() {
   const [page, setPage] = useState("Pokedex");
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 6, backgroundColor: colors.light }}>
+    <View
+      style={{ ...commonstyles.centeredView, backgroundColor: colors.light }}
+    >
+      <View>
         <DisplayPage page={page} />
-        <OverlayMenu page={page} />
       </View>
-      <View style={{ flex: 1 }}>
-        <MainMenu page={page} />
-      </View>
+      <OverlayMenu page={page} />
+      <MainMenu page={page} />
     </View>
   );
 }
