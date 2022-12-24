@@ -1,4 +1,4 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, GestureResponderEvent } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import colors, { alpha } from "../../colors";
 import sizes from "../../sizes";
@@ -9,7 +9,7 @@ type IconButtonProps = {
   color: keyof typeof colors;
   highlightColor?: keyof typeof colors;
   size?: keyof typeof sizes.icon;
-  onPress: () => void;
+  onPress: ((event: GestureResponderEvent) => void) | null | undefined;
 };
 const IconButton: React.FC<IconButtonProps> = (props) => {
   const { text, iconName, color, highlightColor, size, onPress } = props;
@@ -22,17 +22,13 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
         radius: chosenSize,
       }}
       style={{
-        width: chosenSize*2,
-        height: chosenSize*2,
+        width: chosenSize * 2,
+        height: chosenSize * 2,
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <FontAwesome
-        name={iconName}
-        color={colors[color]}
-        size={chosenSize}
-      />
+      <FontAwesome name={iconName} color={colors[color]} size={chosenSize} />
       {text && (
         <Text style={{ color: colors[color], textAlign: "center" }}>
           {text}

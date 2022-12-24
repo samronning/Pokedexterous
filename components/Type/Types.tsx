@@ -1,0 +1,21 @@
+const types = {
+  fire: { color: "#fc4603" },
+  grass: { color: "#22b44c" },
+  water: { color: "#1703ab" },
+  normal: { color: "#6b6b6b" },
+  flying: { color: "#a66bff" },
+  fighting: { color: "#991900" },
+  fairy: { color: "#ff6bd5" },
+  ground: { color: "#784411" },
+  steel: { color: "#adadad" },
+  dark: { color: "#47321c" },
+  dragon: { color: "#7e00a1" },
+  electric: { color: "#fffb00" },
+  ghost: { color: "#6200b8" },
+  bug: { color: "#68de40" },
+  psychic: { color: "#e300aa" },
+  rock: { color: "#8a6f57" },
+  ice: { color: "#4de7ff" },
+  poison: { color: "#bc00d1" },
+};
+export default types;

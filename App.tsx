@@ -29,13 +29,17 @@ export default function App() {
   const [page, setPage] = useState("Pokedex");
   return (
     <View
-      style={{ ...commonstyles.centeredView, backgroundColor: colors.light }}
+      style={{
+        ...commonstyles.centeredView,
+        backgroundColor: colors.light,
+        paddingTop: 60,
+      }}
     >
       <View>
         <DisplayPage page={page} />
       </View>
       <OverlayMenu page={page} />
-      <MainMenu page={page} />
+      <MainMenu page={page} onSelectPage={setPage} />
     </View>
   );
 }
