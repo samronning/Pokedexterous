@@ -29,7 +29,7 @@ const NavigationList = (props: NavigationListProps) => {
   ) => {
     const { title, icon } = navigationProp;
     return (
-      <View style={{ margin: 10 }}>
+      <View style={{ margin: 10 }} key={title}>
         <IconButton
           onPress={() => {
             onItemSelection(title);

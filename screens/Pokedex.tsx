@@ -6,7 +6,13 @@ import commonstyles from "../commonstyles";
 const Pokedex = () => {
   const [pokemonData, setPokemonData] = useState({});
   return (
-    <View style={commonstyles.centeredView}>
+    <View
+      style={{
+        flex: 1,
+        width: "100%",
+        alignItems: "center",
+      }}
+    >
       <EntryRender />
     </View>
   );

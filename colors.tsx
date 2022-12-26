@@ -1,5 +1,5 @@
 const colors = {
-  primary: "#ef7c8e",
+  primary: "#8f1c2e",
   light: "#fae8e0",
   dark: "#d8a7b1",
   secondary: "#b6e2d3",
@@ -7,7 +7,7 @@ const colors = {
   darkText: "#000000",
   errorText: "#ff0000",
   white: "#ffffff",
-  black: "#000000",
+  black: "#000011",
 };
 
 const alpha = (

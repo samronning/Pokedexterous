@@ -33,9 +33,10 @@ export default function App() {
         ...commonstyles.centeredView,
         backgroundColor: colors.light,
         paddingTop: 60,
+        width: "100%",
       }}
     >
-      <View>
+      <View style={{ flex: 1, width: "100%" }}>
         <DisplayPage page={page} />
       </View>
       <OverlayMenu page={page} />
