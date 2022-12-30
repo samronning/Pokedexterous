@@ -6,7 +6,7 @@ const EntryRender = (props: EntryRenderProps) => {
   const { pokedexEntries } = props;
   return (
     <FlatList
-      style={{ width: "90%" }}
+      style={{ width: "100%" }}
       data={pokedexEntries}
       renderItem={({ item }) => <Entry pokedexEntry={item} />}
     />

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import IconButton, { IconButtonProps } from "./IconButton";
+import IconButton, { IconButtonProps } from "../Common/IconButton";
 import { View, Animated } from "react-native";
 
 type AnimatedArrowIconButtonProps = {

@@ -1,10 +1,13 @@
-import IconModal from "../../IconModal";
-import { Text } from "react-native";
+import { View } from "react-native";
+import IconModal from "../../../Common/IconModal";
+import GenerationSelect from "./GenerationSelect";
 
 const FilterModal = () => {
   return (
-    <IconModal iconName="filter" color="primary" title="Filter">
-      <Text>Hello</Text>
+    <IconModal iconName="filter" color="light" title="Filter" size="small">
+      <View>
+        <GenerationSelect />
+      </View>
     </IconModal>
   );
 };

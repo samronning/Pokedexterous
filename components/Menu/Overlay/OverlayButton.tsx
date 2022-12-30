@@ -1,4 +1,4 @@
-import IconButton, { IconButtonProps } from "../IconButton";
+import IconButton, { IconButtonProps } from "../../Common/IconButton";
 import colors, { alpha } from "../../../colors";
 
 type OverlayButtonProps = Pick<

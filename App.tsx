@@ -31,9 +31,8 @@ export default function App() {
     <View
       style={{
         ...commonstyles.centeredView,
-        backgroundColor: colors.light,
+        backgroundColor: colors.black,
         paddingTop: 60,
-        width: "100%",
       }}
     >
       <View style={{ flex: 1, width: "100%" }}>

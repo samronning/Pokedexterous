@@ -1,9 +1,9 @@
-import IconModal from "../../IconModal";
+import IconModal from "../../../Common/IconModal";
 import { Text } from "react-native";
 
 const SortModal = () => {
   return (
-    <IconModal iconName="sort" color="primary" title="Sort">
+    <IconModal iconName="sort" color="light" title="Sort" size="small">
       <Text>Hello</Text>
     </IconModal>
   );

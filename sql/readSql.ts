@@ -6,6 +6,10 @@ const resources = {
     resource: require("./selectPokedex.sql"),
     fileName: "selectPokedex.sql",
   },
+  generations: {
+    resource: require("./generations.sql"),
+    fileName: "selectPokedex.sql",
+  },
 };
 
 async function readSqlFile(

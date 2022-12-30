@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import FilterModal from "./Filter/FilterModal";
 import SortModal from "./Sort/SortModal";
 import ViewModal from "./View/ViewModal";
-import { alpha } from "../../../colors";
+import colors, { alpha } from "../../../colors";
 
 type OverlayMenuContainerProps = {
   children: any;
@@ -46,8 +46,9 @@ const styles = StyleSheet.create({
     bottom: 100,
   },
   OverlayMenu: {
-    margin: 10,
+    marginBottom: 10,
     alignItems: "center",
+    backgroundColor: alpha("primary", "medium"),
   },
 });
 

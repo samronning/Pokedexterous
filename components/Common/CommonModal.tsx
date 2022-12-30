@@ -1,15 +1,28 @@
 import { Modal, View, Text, StyleSheet } from "react-native";
 import commonstyles from "../../commonstyles";
+import IconButton from "./IconButton";
 import colors from "../../colors";
 
-type CommonModalProps = typeof Modal.prototype.props & { title: string };
+type CommonModalProps = typeof Modal.prototype.props & {
+  title: string;
+  isInnerModal?: boolean;
+};
 const CommonModal = (props: CommonModalProps) => {
-  const { title, children, ...other } = props;
+  const { title, children, onRequestClose, isInnerModal, ...other } = props;
   return (
     <Modal {...other}>
       <View style={styles.modalContainer}>
         <View style={styles.modalTopContainer}>
           <Text style={commonstyles.lightCenteredText}>{title}</Text>
+          <View style={isInnerModal ? styles.floatLeft : styles.floatRight}>
+            <IconButton
+              color="light"
+              onPress={onRequestClose}
+              text={isInnerModal ? "Back" : "Close"}
+              size="small"
+              iconName={isInnerModal ? "arrow-left" : "close"}
+            />
+          </View>
         </View>
         <View style={styles.modalContentContainer}>{children}</View>
       </View>
@@ -36,6 +49,8 @@ const styles = StyleSheet.create({
     flex: 6,
     width: "100%",
   },
+  floatRight: { position: "absolute", right: 0 },
+  floatLeft: { position: "absolute", left: 0 },
 });
 
 export default CommonModal;

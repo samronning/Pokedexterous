@@ -9,7 +9,8 @@ type IconModalProps = Omit<IconButtonProps, "onPress"> & {
 };
 
 const IconModal = (props: IconModalProps) => {
-  const { children, title, color, highlightColor, iconName, onPress } = props;
+  const { children, title, size, color, highlightColor, iconName, onPress } =
+    props;
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -25,14 +26,15 @@ const IconModal = (props: IconModalProps) => {
         {children}
       </CommonModal>
       <IconButton
-        onPress={() => {
-          onPress && onPress();
+        onPress={(e) => {
+          onPress && onPress(e);
           setIsOpen(true);
         }}
         iconName={iconName}
         text={title}
         color={color}
         highlightColor={highlightColor || color}
+        size={size}
       />
     </>
   );

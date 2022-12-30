@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import colors from "../../colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import IconButton from "./IconButton";
+import IconButton from "../Common/IconButton";
 import commonstyles from "../../commonstyles";
 
 type NavigationProp = {
