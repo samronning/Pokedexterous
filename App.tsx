@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import MainMenu from "./components/Menu/MainMenu";
 import OverlayMenu from "./components/Menu/Overlay/OverlayMenu";
