@@ -14,10 +14,7 @@ const Pokedex = () => {
       try {
         console.log("before await");
         const db = await openDatabase();
-        const sqlStatement = await readSqlFile(
-          require("../sql/selectPokedex.sql"),
-          "selectPokedex.sql"
-        );
+        const sqlStatement = await readSqlFile("selectPokedex");
         db.transaction(
           (sqlTransaction: SQLTransaction) => {
             sqlTransaction.executeSql(sqlStatement, [], (_, res) => {
