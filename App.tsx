@@ -5,6 +5,8 @@ import OverlayMenu from "./components/Menu/Overlay/OverlayMenu";
 import commonstyles from "./commonstyles";
 import { Pokedex, Moves } from "./screens";
 import colors from "./colors";
+import { Provider } from "react-redux";
+import store from "./store";
 
 type DisplayPageProps = {
   page: string;
@@ -28,18 +30,20 @@ const DisplayPage = (props: DisplayPageProps) => {
 export default function App() {
   const [page, setPage] = useState("Pokedex");
   return (
-    <View
-      style={{
-        ...commonstyles.centeredView,
-        backgroundColor: colors.black,
-        paddingTop: 60,
-      }}
-    >
-      <View style={{ flex: 1, width: "100%" }}>
-        <DisplayPage page={page} />
+    <Provider store={store}>
+      <View
+        style={{
+          ...commonstyles.centeredView,
+          backgroundColor: colors.black,
+          paddingTop: 60,
+        }}
+      >
+        <View style={{ flex: 1, width: "100%" }}>
+          <DisplayPage page={page} />
+        </View>
+        <OverlayMenu page={page} />
+        <MainMenu page={page} onSelectPage={setPage} />
       </View>
-      <OverlayMenu page={page} />
-      <MainMenu page={page} onSelectPage={setPage} />
-    </View>
+    </Provider>
   );
 }

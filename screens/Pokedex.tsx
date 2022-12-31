@@ -6,10 +6,12 @@ import commonstyles from "../commonstyles";
 import { SQLTransaction } from "expo-sqlite";
 import openDatabase from "../db";
 import readSqlFile from "../sql/readSql";
+import { selectGeneration } from "../slices/generation";
+import { useAppSelector } from "../hooks/redux";
 
 const Pokedex = () => {
   const [pokedexEntries, setPokedexEntries] = useState<PokedexEntry[]>([]);
-  const [selectedGeneration, setSelectedGeneration] = useState(1);
+  const selectedGeneration = useAppSelector(selectGeneration);
   useEffect(() => {
     const doQuery = async () => {
       try {
@@ -38,7 +40,7 @@ const Pokedex = () => {
       }
     };
     doQuery();
-  }, []);
+  }, [selectedGeneration]);
   return (
     <View
       style={{

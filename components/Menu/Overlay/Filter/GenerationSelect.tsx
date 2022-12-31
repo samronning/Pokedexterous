@@ -3,6 +3,8 @@ import Selection from "../../../Common/Selection";
 import { useState, useEffect } from "react";
 import readSqlFile from "../../../../sql/readSql";
 import openDatabase from "../../../../db";
+import { useAppSelector, useAppDispatch } from "../../../../hooks/redux";
+import { selectGeneration, setGeneration } from "../../../../slices/generation";
 
 type Generation = {
   name: string;
@@ -11,7 +13,8 @@ type Generation = {
 
 const GenerationSelect = () => {
   const [generations, setGenerations] = useState<Generation[]>([]);
-  const [selectedGeneration, setSelectedGeneration] = useState(0);
+  const selectedGeneration = useAppSelector(selectGeneration);
+  const dispatchGeneration = useAppDispatch();
   useEffect(() => {
     const getGenerations = async () => {
       const db = await openDatabase();
@@ -30,7 +33,7 @@ const GenerationSelect = () => {
         <Selection
           data={[{ key: "0", name: `all - national` }, ...generations]}
           selectedIndex={selectedGeneration}
-          onSelect={setSelectedGeneration}
+          onSelect={(selection) => dispatchGeneration(setGeneration(selection))}
           title="Generation"
         />
       )}

@@ -10,7 +10,7 @@ type SelectionProps = {
   title: string;
   data: { key: string; name: string }[];
   selectedIndex: number;
-  onSelect: Dispatch<SetStateAction<number>>;
+  onSelect: Dispatch<number>;
 };
 const Selection = (props: SelectionProps) => {
   const { data, title, selectedIndex, onSelect } = props;
