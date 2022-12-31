@@ -4,10 +4,14 @@ import { useState, useEffect } from "react";
 import readSqlFile from "../../../../sql/readSql";
 import openDatabase from "../../../../db";
 
-type Generation = { region_id: number; name: string; key: string };
+type Generation = {
+  name: string;
+  key: string;
+};
 
 const GenerationSelect = () => {
   const [generations, setGenerations] = useState<Generation[]>([]);
+  const [selectedGeneration, setSelectedGeneration] = useState(0);
   useEffect(() => {
     const getGenerations = async () => {
       const db = await openDatabase();
@@ -22,9 +26,13 @@ const GenerationSelect = () => {
   }, []);
   return (
     <View style={{ flexDirection: "row" }}>
-      <Text>Generation: </Text>
       {generations.length > 0 && (
-        <Selection data={[{ key: "0", name: "All" }, ...generations]} />
+        <Selection
+          data={[{ key: "0", name: `all - national` }, ...generations]}
+          selectedIndex={selectedGeneration}
+          onSelect={setSelectedGeneration}
+          title="Generation"
+        />
       )}
     </View>
   );

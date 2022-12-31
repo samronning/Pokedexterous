@@ -9,6 +9,7 @@ import readSqlFile from "../sql/readSql";
 
 const Pokedex = () => {
   const [pokedexEntries, setPokedexEntries] = useState<PokedexEntry[]>([]);
+  const [selectedGeneration, setSelectedGeneration] = useState(1);
   useEffect(() => {
     const doQuery = async () => {
       try {
@@ -17,9 +18,13 @@ const Pokedex = () => {
         const sqlStatement = await readSqlFile("selectPokedex");
         db.transaction(
           (sqlTransaction: SQLTransaction) => {
-            sqlTransaction.executeSql(sqlStatement, [], (_, res) => {
-              setPokedexEntries(res.rows._array);
-            });
+            sqlTransaction.executeSql(
+              sqlStatement,
+              [selectedGeneration],
+              (_, res) => {
+                setPokedexEntries(res.rows._array);
+              }
+            );
           },
           (err) => {
             console.log(err);

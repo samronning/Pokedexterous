@@ -16,12 +16,13 @@ const TypeBox = (props: TypeBoxProps) => {
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",
+        borderRadius: 50,
       }}
     >
       <Text
         style={{
           color: types[typeId].darkText ? colors.black : colors.white,
-          fontSize: sizes.fonts.small,
+          fontSize: sizes.fonts.tiny,
           fontWeight: "bold",
         }}
       >

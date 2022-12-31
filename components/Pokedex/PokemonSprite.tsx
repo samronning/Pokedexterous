@@ -1,13 +1,19 @@
 import { View, Image } from "react-native";
 import colors, { alpha } from "../../colors";
-const PokemonSprite = ({ pokemonSpriteId }: { pokemonSpriteId: number }) => {
+const PokemonSprite = ({
+  pokemonSpeciesName,
+}: {
+  pokemonSpeciesName: string;
+}) => {
   return (
     <View>
       <Image
         style={{
           width: 100,
           height: 100,
-          backgroundColor: alpha("secondary", "thin"),
+        }}
+        source={{
+          uri: `https://img.pokemondb.net/sprites/sword-shield/icon/${pokemonSpeciesName}.png`,
         }}
       />
     </View>

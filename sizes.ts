@@ -5,6 +5,7 @@ const sizes = {
     large: 80,
   },
   fonts: {
+    tiny: 12,
     small: 14,
     medium: 16,
     large: 24,

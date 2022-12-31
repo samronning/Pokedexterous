@@ -25,7 +25,7 @@ const Entry = (props: { pokedexEntry: PokedexEntry }) => {
         <Text style={styles.pokemonDexNumber}>#000</Text>
         <TypeRender typeId1={typeId1} typeId2={typeId2} />
       </View>
-      <PokemonSprite pokemonSpriteId={1} />
+      <PokemonSprite pokemonSpeciesName={name} />
     </View>
   );
 };

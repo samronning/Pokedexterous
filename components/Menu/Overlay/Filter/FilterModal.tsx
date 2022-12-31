@@ -5,7 +5,14 @@ import GenerationSelect from "./GenerationSelect";
 const FilterModal = () => {
   return (
     <IconModal iconName="filter" color="light" title="Filter" size="small">
-      <View>
+      <View
+        style={{
+          flexDirection: "column",
+          alignItems: "flex-start",
+          height: "100%",
+          padding: 10,
+        }}
+      >
         <GenerationSelect />
       </View>
     </IconModal>

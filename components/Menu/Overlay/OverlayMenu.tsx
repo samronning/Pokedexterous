@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   OverlayMenu: {
     marginBottom: 10,
     alignItems: "center",
-    backgroundColor: alpha("primary", "medium"),
+    backgroundColor: alpha("primary", "thick"),
   },
 });
 
