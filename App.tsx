@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import MainMenu from "./components/Menu/MainMenu";
+import Search from "./components/Menu/Overlay/Search";
 import OverlayMenu from "./components/Menu/Overlay/OverlayMenu";
 import commonstyles from "./commonstyles";
 import { Pokedex, Moves } from "./screens";
@@ -43,6 +44,7 @@ export default function App() {
         </View>
         <OverlayMenu page={page} />
         <MainMenu page={page} onSelectPage={setPage} />
+        <Search page={page} />
       </View>
     </Provider>
   );

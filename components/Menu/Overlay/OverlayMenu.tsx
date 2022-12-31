@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "absolute",
     right: 0,
-    bottom: 100,
+    bottom: 160,
   },
   OverlayMenu: {
     marginBottom: 10,

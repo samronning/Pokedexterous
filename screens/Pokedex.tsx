@@ -22,7 +22,7 @@ const Pokedex = () => {
           (sqlTransaction: SQLTransaction) => {
             sqlTransaction.executeSql(
               sqlStatement,
-              [selectedGeneration],
+              [selectedGeneration, selectedGeneration],
               (_, res) => {
                 setPokedexEntries(res.rows._array);
               }

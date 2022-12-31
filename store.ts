@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import generationReducer from "./slices/generation";
+import searchReducer from "./slices/search";
 // ...
 
 const store = configureStore({
   reducer: {
     generationReducer,
+    searchReducer,
   },
 });
 

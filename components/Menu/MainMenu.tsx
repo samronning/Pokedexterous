@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     position: "absolute",
     width: "100%",
-    height: 420,
+    height: 480,
     bottom: -420,
   },
   text: {
     color: colors.light,
     fontSize: 24,
-    marginBottom: 12,
+    marginBottom: 34,
   },
 });
 

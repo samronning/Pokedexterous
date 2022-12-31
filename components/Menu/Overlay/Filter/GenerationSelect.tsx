@@ -14,7 +14,7 @@ type Generation = {
 const GenerationSelect = () => {
   const [generations, setGenerations] = useState<Generation[]>([]);
   const selectedGeneration = useAppSelector(selectGeneration);
-  const dispatchGeneration = useAppDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const getGenerations = async () => {
       const db = await openDatabase();
@@ -32,8 +32,12 @@ const GenerationSelect = () => {
       {generations.length > 0 && (
         <Selection
           data={[{ key: "0", name: `all - national` }, ...generations]}
-          selectedIndex={selectedGeneration}
-          onSelect={(selection) => dispatchGeneration(setGeneration(selection))}
+          selectedIndex={
+            selectedGeneration === "" ? 0 : Number(selectedGeneration)
+          }
+          onSelect={(selection) =>
+            dispatch(setGeneration(selection === 0 ? "" : selection))
+          }
           title="Generation"
         />
       )}
