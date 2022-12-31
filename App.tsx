@@ -32,15 +32,18 @@ export default function App() {
   const [page, setPage] = useState("Pokedex");
   return (
     <Provider store={store}>
-      <View
-        style={{
-          ...commonstyles.centeredView,
-          backgroundColor: colors.black,
-          paddingTop: 60,
-        }}
-      >
-        <View style={{ flex: 1, width: "100%" }}>
-          <DisplayPage page={page} />
+      <View style={{ flex: 1, backgroundColor: colors.black }}>
+        <View
+          style={{
+            position: "absolute",
+            bottom: 160,
+            top: 50,
+            width: "100%",
+          }}
+        >
+          <View style={{ flex: 1 }}>
+            <DisplayPage page={page} />
+          </View>
         </View>
         <OverlayMenu page={page} />
         <MainMenu page={page} onSelectPage={setPage} />

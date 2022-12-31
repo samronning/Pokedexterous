@@ -7,12 +7,15 @@ import { SQLTransaction } from "expo-sqlite";
 import openDatabase from "../db";
 import readSqlFile from "../sql/readSql";
 import { selectGeneration } from "../slices/generation";
+import { selectSearch } from "../slices/search";
 import { useAppSelector } from "../hooks/redux";
 
 const Pokedex = () => {
   const [pokedexEntries, setPokedexEntries] = useState<PokedexEntry[]>([]);
   const selectedGeneration = useAppSelector(selectGeneration);
+  const searchTerm = useAppSelector(selectSearch);
   useEffect(() => {
+    console.log(searchTerm);
     const doQuery = async () => {
       try {
         console.log("before await");
@@ -22,7 +25,7 @@ const Pokedex = () => {
           (sqlTransaction: SQLTransaction) => {
             sqlTransaction.executeSql(
               sqlStatement,
-              [selectedGeneration, selectedGeneration],
+              [selectedGeneration, selectedGeneration, searchTerm],
               (_, res) => {
                 setPokedexEntries(res.rows._array);
               }
@@ -40,7 +43,7 @@ const Pokedex = () => {
       }
     };
     doQuery();
-  }, [selectedGeneration]);
+  }, [selectedGeneration, searchTerm]);
   return (
     <View
       style={{

@@ -14,7 +14,11 @@ where
         from
             pokemon_v2_pokedex
         where
-            region_id = ? or ? = ''
+            (
+                region_id = ?
+                or ? = ''
+            )
+            and p.name like ? || '%'
     )
 group by
     p.id
