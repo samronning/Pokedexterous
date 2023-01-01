@@ -5,11 +5,17 @@ import colors, { alpha } from "../../colors";
 import types from "../Type/Types";
 import sizes from "../../sizes";
 import { padNumberZeroes } from "../../helper";
+import Stats from "../Stats/Stats";
 
-type PokedexEntry = { name: string; type_ids: string; dex_number: number };
+type PokedexEntry = {
+  name: string;
+  type_ids: string;
+  dex_number: number;
+  base_stats: string;
+};
 const Entry = (props: { pokedexEntry: PokedexEntry }) => {
   const { pokedexEntry } = props;
-  const { type_ids, name, dex_number } = pokedexEntry;
+  const { type_ids, name, dex_number, base_stats } = pokedexEntry;
   const getTypeIds: (type_ids: string) => Array<keyof typeof types> = (
     type_ids: string
   ) => {
@@ -20,14 +26,17 @@ const Entry = (props: { pokedexEntry: PokedexEntry }) => {
   return (
     <View style={styles.entryContainer}>
       <View style={styles.dataContainer}>
-        <Text style={styles.pokemonName}>
-          {name[0].toUpperCase() + name.slice(1)}
-        </Text>
-        <Text style={styles.pokemonDexNumber}>{`#${padNumberZeroes(
-          dex_number,
-          4
-        )}`}</Text>
-        <TypeRender typeId1={typeId1} typeId2={typeId2} />
+        <View style={styles.basicDataContainer}>
+          <Text style={styles.pokemonName}>
+            {name[0].toUpperCase() + name.slice(1)}
+          </Text>
+          <Text style={styles.pokemonDexNumber}>{`#${padNumberZeroes(
+            dex_number,
+            4
+          )}`}</Text>
+          <TypeRender typeId1={typeId1} typeId2={typeId2} />
+        </View>
+        <Stats stats={base_stats.split(",")} />
       </View>
       <PokemonSprite pokemonSpeciesName={name} />
     </View>
@@ -46,6 +55,12 @@ const styles = StyleSheet.create({
     fontSize: sizes.fonts.small,
   },
   dataContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flex: 1,
+  },
+  basicDataContainer: {
     alignItems: "flex-start",
     paddingHorizontal: 10,
   },

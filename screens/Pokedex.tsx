@@ -2,7 +2,6 @@ import { useState, useEffect, Dispatch } from "react";
 import { View, Text } from "react-native";
 import EntryRender from "../components/Pokedex/EntryRender";
 import { PokedexEntry } from "../components/Pokedex/Entry";
-import commonstyles from "../commonstyles";
 import { SQLTransaction } from "expo-sqlite";
 import openDatabase from "../db";
 import readSqlFile from "../sql/readSql";

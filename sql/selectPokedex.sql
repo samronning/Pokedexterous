@@ -1,28 +1,38 @@
 select
-    p.name,
-    pdn.pokedex_number as dex_number,
-    p.id as pokemon_id,
-    group_concat(t.type_id) as type_ids
+    name,
+    dex_number,
+    speciesandtypes.pokemon_id,
+    type_ids,
+    group_concat(s.base_stat) as base_stats
 from
-    pokemon_v2_pokemondexnumber as pdn
-    join pokemon_v2_pokemon as p on pdn.pokemon_species_id = p.id
-    join pokemon_v2_pokemontype as t on t.pokemon_id = p.id
-where
-    pdn.pokedex_id = (
+    (
         select
-            min(id)
+            p.name as 'name',
+            pdn.pokedex_number as dex_number,
+            p.id as pokemon_id,
+            group_concat(t.type_id) as type_ids
         from
-            pokemon_v2_pokedex
+            pokemon_v2_pokemondexnumber as pdn
+            join pokemon_v2_pokemon as p on pdn.pokemon_species_id = p.id
+            join pokemon_v2_pokemontype as t on t.pokemon_id = p.id
         where
-            (
-                region_id = ?
-                or ? = ''
+            pdn.pokedex_id = (
+                select
+                    min(id)
+                from
+                    pokemon_v2_pokedex
+                where
+                    (
+                        region_id = ?
+                        or ? = ''
+                    )
+                    and p.name like ? || '%'
             )
-            and p.name like ? || '%'
-    )
+        group by
+            p.id
+    ) as speciesandtypes
+    join pokemon_v2_pokemonstat as s on s.pokemon_id = speciesandtypes.pokemon_id
 group by
-    p.id
+    speciesandtypes.pokemon_id
 order by
-    pokedex_number
-limit
-    100;
+    dex_number;

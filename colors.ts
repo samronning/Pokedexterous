@@ -8,6 +8,9 @@ const colors = {
   errorText: "#ff0000",
   white: "#ffffff",
   black: "#000011",
+  green: "#00ff00",
+  red: "#ff0000",
+  yellow: "#ffff00",
 };
 
 const alpha = (
