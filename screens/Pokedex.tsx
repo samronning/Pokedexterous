@@ -23,7 +23,7 @@ const doQuery = async (
       (sqlTransaction: SQLTransaction) => {
         sqlTransaction.executeSql(
           sqlStatement,
-          [selectedGeneration, selectedGeneration, searchTerm],
+          [selectedGeneration, selectedGeneration, searchTerm, searchTerm],
           (_, res) => {
             setPokedexEntries(res.rows._array);
           }

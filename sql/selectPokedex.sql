@@ -28,7 +28,10 @@ from
                         region_id = ?
                         or ? = ''
                     )
-                    and p.name like ? || '%'
+                    and (
+                        p.name like ? || '%'
+                        or pdn.pokedex_number like '%' || ?
+                    )
             )
         group by
             p.id
