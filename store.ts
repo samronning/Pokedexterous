@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import generationReducer from "./slices/generation";
 import searchReducer from "./slices/search";
 import sortReducer from "./slices/sort";
+import loadingReducer from "./slices/loading";
 // ...
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     generationReducer,
     searchReducer,
     sortReducer,
+    loadingReducer,
   },
 });
 

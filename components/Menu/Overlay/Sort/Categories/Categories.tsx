@@ -3,12 +3,16 @@ import { View } from "react-native";
 import IconButton, { IconName } from "../../../../Common/IconButton";
 import pokedexCategories from "./Pokedex";
 import { SortColumn } from "../../../../../slices/sort";
+import { useAppSelector, useAppDispatch } from "../../../../../hooks/redux";
+import { selectSort, setSort } from "../../../../../slices/sort";
 
 const pageToCategoryMap = {
   Pokedex: pokedexCategories,
 };
 
 const CategoryRender = ({ categoryList }: { categoryList: CategoryList }) => {
+  const sortObj = useAppSelector(selectSort);
+  const dispatch = useAppDispatch();
   return (
     <View
       style={{
@@ -25,8 +29,11 @@ const CategoryRender = ({ categoryList }: { categoryList: CategoryList }) => {
               iconName={category.iconName}
               color="primary"
               size="small"
+              border={category.column === sortObj.column}
               text={category.displayText}
-              onPress={() => {}}
+              onPress={() => {
+                dispatch(setSort({ ...sortObj, column: category.column }));
+              }}
             />
           </View>
         );

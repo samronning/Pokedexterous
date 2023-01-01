@@ -8,6 +8,7 @@ import { Pokedex, Moves } from "./screens";
 import colors from "./colors";
 import { Provider } from "react-redux";
 import store from "./store";
+import Loading from "./components/Loading";
 
 type Page =
   | "Pokedex"
@@ -53,6 +54,7 @@ export default function App() {
         <OverlayMenu page={page} />
         <MainMenu page={page} onSelectPage={setPage} />
         <Search page={page} />
+        <Loading />
       </View>
     </Provider>
   );

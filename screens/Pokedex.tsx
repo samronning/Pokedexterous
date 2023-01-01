@@ -8,18 +8,21 @@ import readSqlFile from "../sql/readSql";
 import { selectGeneration } from "../slices/generation";
 import { selectSearch } from "../slices/search";
 import { selectSort, SortColumn, SortDirection } from "../slices/sort";
-import { useAppSelector } from "../hooks/redux";
+import { setLoading } from "../slices/loading";
+import { useAppSelector, useAppDispatch } from "../hooks/redux";
 import { debounce } from "lodash";
+import { AppDispatch } from "../store";
 
 const doQuery = async (
   selectedGeneration: number | string,
   searchTerm: string,
   sortColumn: SortColumn,
   sortDirection: SortDirection,
-  setPokedexEntries: Dispatch<PokedexEntry[]>
+  setPokedexEntries: Dispatch<PokedexEntry[]>,
+  dispatch: AppDispatch
 ) => {
   try {
-    console.log("before await");
+    dispatch(setLoading(true));
     const db = await openDatabase();
     const sqlStatement = await readSqlFile("selectPokedex");
     db.transaction(
@@ -29,6 +32,7 @@ const doQuery = async (
           [selectedGeneration, selectedGeneration, searchTerm, searchTerm],
           (_, res) => {
             setPokedexEntries(res.rows._array);
+            dispatch(setLoading(false));
           }
         );
       },
@@ -51,13 +55,15 @@ const Pokedex = () => {
   const selectedGeneration = useAppSelector(selectGeneration);
   const searchTerm = useAppSelector(selectSearch);
   const sortObj = useAppSelector(selectSort);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     debouncedDoQuery(
       selectedGeneration,
       searchTerm,
       sortObj.column,
       sortObj.direction,
-      setPokedexEntries
+      setPokedexEntries,
+      dispatch
     );
   }, [selectedGeneration, searchTerm, sortObj]);
   return (

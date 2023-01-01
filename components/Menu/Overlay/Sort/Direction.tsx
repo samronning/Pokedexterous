@@ -11,7 +11,7 @@ const Direction = () => {
   return (
     <View style={{ flexDirection: "row" }}>
       <IconButton
-        text="Asc"
+        text="Low to High"
         bold={isAsc}
         border={isAsc}
         size="small"
@@ -22,7 +22,7 @@ const Direction = () => {
         color="primary"
       />
       <IconButton
-        text="Desc"
+        text="High to Low"
         bold={!isAsc}
         border={!isAsc}
         size="small"
