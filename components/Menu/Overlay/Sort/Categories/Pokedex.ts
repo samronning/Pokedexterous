@@ -17,12 +17,12 @@ const pokedexCategories: CategoryList = [
     iconName: { materialName: "wall" },
   },
   {
-    column: "specialattack",
+    column: "special_attack",
     displayText: "Special Attack",
     iconName: { materialName: "fire" },
   },
   {
-    column: "specialdefense",
+    column: "special_defense",
     displayText: "Special Defense",
     iconName: { materialName: "shield-sun" },
   },

@@ -9,8 +9,8 @@ interface SortState {
       | "hp"
       | "attack"
       | "defense"
-      | "specialattack"
-      | "specialdefense"
+      | "special_attack"
+      | "special_defense"
       | "speed"
       | "base_stats_total";
     direction: "asc" | "desc";
