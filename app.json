@@ -27,9 +27,6 @@
       },
       "package": "com.sronning.Pokedexterous"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "extra": {
       "eas": {
         "projectId": "dee22b05-f229-4554-837b-c374e47b7c1c"
