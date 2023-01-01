@@ -1,9 +1,11 @@
 select
     name,
     dex_number,
-    speciesandtypes.pokemon_id,
+    speciesandtypes.pokemon_id as 'key',
     type_ids,
-    group_concat(s.base_stat) as base_stats
+    group_concat(s.base_stat) as base_stats,
+    sum(s.base_stat) as base_stats_total,
+    avg(s.base_stat) as base_stats_avg
 from
     (
         select

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { FlatList } from "react-native";
 import Entry, { PokedexEntry } from "./Entry";
 
@@ -13,4 +14,4 @@ const EntryRender = (props: EntryRenderProps) => {
   );
 };
 
-export default EntryRender;
+export default memo(EntryRender);

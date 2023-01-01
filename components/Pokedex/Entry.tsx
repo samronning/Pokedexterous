@@ -6,12 +6,16 @@ import types from "../Type/Types";
 import sizes from "../../sizes";
 import { padNumberZeroes } from "../../helper";
 import Stats from "../Stats/Stats";
+import { memo } from "react";
 
 type PokedexEntry = {
   name: string;
   type_ids: string;
   dex_number: number;
   base_stats: string;
+  base_stats_total: number;
+  base_stats_avg: number;
+  key: string;
 };
 const Entry = (props: { pokedexEntry: PokedexEntry }) => {
   const { pokedexEntry } = props;
@@ -36,7 +40,7 @@ const Entry = (props: { pokedexEntry: PokedexEntry }) => {
           )}`}</Text>
           <TypeRender typeId1={typeId1} typeId2={typeId2} />
         </View>
-        <Stats stats={base_stats.split(",")} />
+        <Stats stats={base_stats.split(",").map((str) => Number(str))} />
       </View>
       <PokemonSprite pokemonSpeciesName={name} />
     </View>
@@ -74,5 +78,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Entry;
+export default memo(Entry);
 export { PokedexEntry };

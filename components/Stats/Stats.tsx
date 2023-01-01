@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { View } from "react-native";
 import StatBar from "./StatBar";
 
@@ -17,10 +18,10 @@ const Stats = (props: StatsProps) => {
   return (
     <View style={{ flexWrap: "wrap", height: 70 }}>
       {statRenders.map((stat, index) => (
-        <StatBar name={stat.display} value={stats[index]} />
+        <StatBar key={index} name={stat.display} value={stats[index]} />
       ))}
     </View>
   );
 };
 
-export default Stats;
+export default memo(Stats);

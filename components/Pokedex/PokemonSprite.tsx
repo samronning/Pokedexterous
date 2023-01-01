@@ -1,4 +1,5 @@
 import { View, Image } from "react-native";
+import { memo } from "react";
 import colors, { alpha } from "../../colors";
 const PokemonSprite = ({
   pokemonSpeciesName,
@@ -19,4 +20,4 @@ const PokemonSprite = ({
     </View>
   );
 };
-export default PokemonSprite;
+export default memo(PokemonSprite);

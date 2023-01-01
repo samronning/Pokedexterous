@@ -1,11 +1,12 @@
 import types from "./Types";
+import { memo } from "react";
 import { View, Text } from "react-native";
 import colors from "../../colors";
 import sizes from "../../sizes";
 
 type TypeId = keyof typeof types;
 type TypeBoxProps = { typeId: TypeId };
-const TypeBox = (props: TypeBoxProps) => {
+const TypeBox = memo((props: TypeBoxProps) => {
   const { typeId } = props;
   return (
     <View
@@ -30,7 +31,7 @@ const TypeBox = (props: TypeBoxProps) => {
       </Text>
     </View>
   );
-};
+});
 
 type TypeRenderProps = { typeId1: TypeId; typeId2?: TypeId };
 const TypeRender = (props: TypeRenderProps) => {
@@ -49,4 +50,4 @@ const TypeRender = (props: TypeRenderProps) => {
     </View>
   );
 };
-export default TypeRender;
+export default memo(TypeRender);
