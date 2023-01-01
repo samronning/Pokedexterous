@@ -23,7 +23,7 @@ const Search = (props: SearchProps) => {
       <TextInput
         style={styles.barContainer}
         cursorColor={colors.primary}
-        placeholder="Search with name or id"
+        placeholder="Search with name or dex number"
         value={searchTerm}
         onChangeText={(newSearchTerm) => {
           dispatch(setSearch(newSearchTerm));
