@@ -5,8 +5,9 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import sizes from "../../../sizes";
 import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
 import { selectSearch, setSearch } from "../../../slices/search";
+import { Page } from "../../../App";
 
-type SearchProps = { page: string };
+type SearchProps = { page: Page };
 const Search = (props: SearchProps) => {
   const { page } = props;
   const searchTerm = useAppSelector(selectSearch);

@@ -9,11 +9,16 @@ import colors from "./colors";
 import { Provider } from "react-redux";
 import store from "./store";
 
-type DisplayPageProps = {
-  page: string;
-};
-const DisplayPage = (props: DisplayPageProps) => {
-  const { page } = props;
+type Page =
+  | "Pokedex"
+  | "Moves"
+  | "Natures"
+  | "Types"
+  | "Abilities"
+  | "Items"
+  | undefined;
+
+const DisplayPage = ({ page }: { page: Page }) => {
   switch (page) {
     case "Pokedex":
       return <Pokedex />;
@@ -29,7 +34,7 @@ const DisplayPage = (props: DisplayPageProps) => {
 };
 
 export default function App() {
-  const [page, setPage] = useState("Pokedex");
+  const [page, setPage] = useState<Page>("Pokedex");
   return (
     <Provider store={store}>
       <View style={{ flex: 1, backgroundColor: colors.black }}>
@@ -52,3 +57,4 @@ export default function App() {
     </Provider>
   );
 }
+export { Page };

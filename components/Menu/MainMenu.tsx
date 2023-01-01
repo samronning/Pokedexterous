@@ -3,10 +3,11 @@ import { Animated, View, Text, StyleSheet, Image } from "react-native";
 import colors from "../../colors";
 import AnimatedArrowIconButton from "./AnimatedArrowIconButton";
 import NavigationList from "./NavigationList";
+import { Page } from "../../App";
 
 type MainMenuProps = {
-  page: string;
-  onSelectPage: React.Dispatch<React.SetStateAction<string>>;
+  page: Page;
+  onSelectPage: React.Dispatch<React.SetStateAction<Page>>;
 };
 
 const MainMenu = (props: MainMenuProps) => {

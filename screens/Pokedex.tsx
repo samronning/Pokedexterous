@@ -25,7 +25,7 @@ const doQuery = async (
     db.transaction(
       (sqlTransaction: SQLTransaction) => {
         sqlTransaction.executeSql(
-          sqlStatement + `sort by ${sortColumn} ${sortDirection}`,
+          sqlStatement + ` order by ${sortColumn} ${sortDirection}`,
           [selectedGeneration, selectedGeneration, searchTerm, searchTerm],
           (_, res) => {
             setPokedexEntries(res.rows._array);
@@ -59,7 +59,7 @@ const Pokedex = () => {
       sortObj.direction,
       setPokedexEntries
     );
-  }, [selectedGeneration, searchTerm]);
+  }, [selectedGeneration, searchTerm, sortObj]);
   return (
     <View
       style={{

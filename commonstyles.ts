@@ -23,6 +23,6 @@ const commonstyles = StyleSheet.create({
   lightCenteredText: {
     color: colors.light,
     textAlign: "center",
-  }
+  },
 });
 export default commonstyles;

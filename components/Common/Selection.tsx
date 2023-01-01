@@ -48,7 +48,6 @@ const Selection = (props: SelectionProps) => {
   };
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <Text style={{ fontWeight: "bold" }}>{title}: </Text>
       <PressableTextButton
         text={
           data[selectedIndex].name

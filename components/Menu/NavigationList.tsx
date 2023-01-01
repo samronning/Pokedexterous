@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import colors from "../../colors";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import IconButton from "../Common/IconButton";
+import IconButton, { IconName } from "../Common/IconButton";
 import commonstyles from "../../commonstyles";
+import { Page } from "../../App";
 
 type NavigationProp = {
-  title: string;
-  icon: keyof typeof FontAwesome.glyphMap;
+  title: Page;
+  icon: IconName;
 };
 type NavigationPropsArray = Array<NavigationProp>;
 const navigationProps: NavigationPropsArray = [
@@ -19,7 +19,7 @@ const navigationProps: NavigationPropsArray = [
 ];
 
 type NavigationListProps = {
-  onItemSelection: React.Dispatch<React.SetStateAction<string>>;
+  onItemSelection: React.Dispatch<React.SetStateAction<Page>>;
 };
 const NavigationList = (props: NavigationListProps) => {
   const { onItemSelection } = props;

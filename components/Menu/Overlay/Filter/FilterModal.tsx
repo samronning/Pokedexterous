@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import IconModal from "../../../Common/IconModal";
 import GenerationSelect from "./GenerationSelect";
+import GlossaryItem from "../../../Common/GlossaryItem";
 
 const FilterModal = () => {
   return (
@@ -13,7 +14,9 @@ const FilterModal = () => {
           padding: 10,
         }}
       >
-        <GenerationSelect />
+        <GlossaryItem heading="generation">
+          <GenerationSelect />
+        </GlossaryItem>
       </View>
     </IconModal>
   );

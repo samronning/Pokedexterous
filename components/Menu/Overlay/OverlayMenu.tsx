@@ -3,6 +3,7 @@ import FilterModal from "./Filter/FilterModal";
 import SortModal from "./Sort/SortModal";
 import ViewModal from "./View/ViewModal";
 import colors, { alpha } from "../../../colors";
+import { Page } from "../../../App";
 
 type OverlayMenuContainerProps = {
   children: any;
@@ -16,14 +17,10 @@ const OverlayMenuContainer = (props: OverlayMenuContainerProps) => {
   );
 };
 
-type OverlayMenuProps = {
-  page: string;
-};
 /*
 This component determines which (if any) overlays to display depending on the page
 */
-const OverlayMenu = (props: OverlayMenuProps) => {
-  const { page } = props;
+const OverlayMenu = ({ page }: { page: Page }) => {
   switch (page) {
     case "Natures" || "Types":
       return null;
@@ -32,7 +29,7 @@ const OverlayMenu = (props: OverlayMenuProps) => {
         <OverlayMenuContainer>
           <ViewModal />
           <FilterModal />
-          <SortModal />
+          <SortModal page={page} />
         </OverlayMenuContainer>
       );
   }

@@ -3,7 +3,18 @@ import type { RootState } from "../store";
 
 // Define a type for the slice state
 interface SortState {
-  value: { column: "dex_number"; direction: "asc" | "desc" };
+  value: {
+    column:
+      | "dex_number"
+      | "hp"
+      | "attack"
+      | "defense"
+      | "specialattack"
+      | "specialdefense"
+      | "speed"
+      | "base_stats_total";
+    direction: "asc" | "desc";
+  };
 }
 
 // Define the initial state using that type
