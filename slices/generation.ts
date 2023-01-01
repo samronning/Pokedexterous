@@ -16,7 +16,7 @@ export const generationSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setGeneration: (state, action: PayloadAction<number | string>) => {
+    setGeneration: (state, action: PayloadAction<GenerationState["value"]>) => {
       state.value = action.payload;
     },
   },

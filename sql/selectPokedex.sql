@@ -38,6 +38,4 @@ from
     ) as speciesandtypes
     join pokemon_v2_pokemonstat as s on s.pokemon_id = speciesandtypes.pokemon_id
 group by
-    speciesandtypes.pokemon_id
-order by
-    dex_number;
+    speciesandtypes.pokemon_id;

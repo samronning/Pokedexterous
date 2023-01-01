@@ -16,7 +16,7 @@ export const searchSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setSearch: (state, action: PayloadAction<string>) => {
+    setSearch: (state, action: PayloadAction<SearchState["value"]>) => {
       state.value = action.payload;
     },
   },

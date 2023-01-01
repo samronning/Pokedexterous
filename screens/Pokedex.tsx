@@ -7,12 +7,15 @@ import openDatabase from "../db";
 import readSqlFile from "../sql/readSql";
 import { selectGeneration } from "../slices/generation";
 import { selectSearch } from "../slices/search";
+import { selectSort, SortColumn, SortDirection } from "../slices/sort";
 import { useAppSelector } from "../hooks/redux";
 import { debounce } from "lodash";
 
 const doQuery = async (
   selectedGeneration: number | string,
   searchTerm: string,
+  sortColumn: SortColumn,
+  sortDirection: SortDirection,
   setPokedexEntries: Dispatch<PokedexEntry[]>
 ) => {
   try {
@@ -22,7 +25,7 @@ const doQuery = async (
     db.transaction(
       (sqlTransaction: SQLTransaction) => {
         sqlTransaction.executeSql(
-          sqlStatement,
+          sqlStatement + `sort by ${sortColumn} ${sortDirection}`,
           [selectedGeneration, selectedGeneration, searchTerm, searchTerm],
           (_, res) => {
             setPokedexEntries(res.rows._array);
@@ -47,8 +50,15 @@ const Pokedex = () => {
   const [pokedexEntries, setPokedexEntries] = useState<PokedexEntry[]>([]);
   const selectedGeneration = useAppSelector(selectGeneration);
   const searchTerm = useAppSelector(selectSearch);
+  const sortObj = useAppSelector(selectSort);
   useEffect(() => {
-    debouncedDoQuery(selectedGeneration, searchTerm, setPokedexEntries);
+    debouncedDoQuery(
+      selectedGeneration,
+      searchTerm,
+      sortObj.column,
+      sortObj.direction,
+      setPokedexEntries
+    );
   }, [selectedGeneration, searchTerm]);
   return (
     <View
