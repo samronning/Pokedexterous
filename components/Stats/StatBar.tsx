@@ -1,5 +1,6 @@
 import { View, Text } from "react-native";
 import colors from "../../colors";
+import sizes from "../../sizes";
 
 const statRange = {
   bad: { color: colors.red },
@@ -18,18 +19,39 @@ const StatBar = (props: StatBarProps) => {
       ? "okay"
       : "good");
   return (
-    <View style={{ flexDirection: "row" }}>
-      <Text style={{ color: colors.light, marginLeft: 5 }}>{name}: </Text>
+    <View
+      style={{
+        flexDirection: "column-reverse",
+        justifyContent: "space-between",
+        alignItems: "center",
+        minHeight: 70,
+      }}
+    >
+      <Text
+        style={{
+          color: colors.black,
+          marginHorizontal: 3,
+          fontWeight: "bold",
+          fontSize: sizes.fonts.tiny,
+        }}
+      >
+        {name}
+      </Text>
       {value && (
         <View
           style={{
             backgroundColor: assessment ? statRange[assessment].color : "",
-            width: value / 4,
-            height: 3,
+            borderWidth: 1,
+            borderColor: colors.black,
+            width: 8,
+            borderRadius: 10,
+            height: value / 4,
           }}
         />
       )}
-      <Text style={{ color: colors.light }}>{value}</Text>
+      <Text style={{ color: colors.black, fontSize: sizes.fonts.tiny }}>
+        {value}
+      </Text>
     </View>
   );
 };

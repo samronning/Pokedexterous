@@ -16,7 +16,7 @@ type StatsProps = { stats: number[] };
 const Stats = (props: StatsProps) => {
   const { stats } = props;
   return (
-    <View style={{ flexWrap: "wrap", height: 70 }}>
+    <View style={{ flexDirection: "row" }}>
       {statRenders.map((stat, index) => (
         <StatBar key={index} name={stat.display} value={stats[index]} />
       ))}

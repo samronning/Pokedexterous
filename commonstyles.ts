@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "./colors";
+import sizes from "./sizes";
 
 const commonstyles = StyleSheet.create({
   centeredView: {
@@ -23,6 +24,12 @@ const commonstyles = StyleSheet.create({
   lightCenteredText: {
     color: colors.light,
     textAlign: "center",
+  },
+  title: {
+    color: colors.light,
+    fontWeight: "bold",
+    fontSize: sizes.fonts.huge,
+    marginHorizontal: 10,
   },
 });
 export default commonstyles;

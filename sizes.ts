@@ -9,6 +9,7 @@ const sizes = {
     small: 14,
     medium: 16,
     large: 24,
+    huge: 32,
   },
 };
 export default sizes;

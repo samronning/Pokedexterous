@@ -42,12 +42,8 @@ const Search = (props: SearchProps) => {
 
 const styles = StyleSheet.create({
   searchContainer: {
-    position: "absolute",
     paddingVertical: 5,
-    borderColor: colors.light,
-    borderWidth: 1,
     width: "100%",
-    bottom: 0,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

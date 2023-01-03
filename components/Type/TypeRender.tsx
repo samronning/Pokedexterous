@@ -12,12 +12,15 @@ const TypeBox = memo((props: TypeBoxProps) => {
     <View
       style={{
         backgroundColor: types[typeId].color,
-        margin: 5,
-        padding: 10,
+        marginVertical: 2,
+        width: 80,
+        padding: 3,
+        paddingHorizontal: 5,
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 50,
+        borderColor: colors.black,
       }}
     >
       <Text
@@ -39,7 +42,6 @@ const TypeRender = (props: TypeRenderProps) => {
   return (
     <View
       style={{
-        flexDirection: "row",
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",

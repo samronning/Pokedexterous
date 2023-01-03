@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import MainMenu from "./components/Menu/MainMenu";
-import Search from "./components/Menu/Overlay/Search";
-import OverlayMenu from "./components/Menu/Overlay/OverlayMenu";
 import commonstyles from "./commonstyles";
 import { Pokedex, Moves } from "./screens";
 import colors from "./colors";
 import { Provider } from "react-redux";
 import store from "./store";
 import Loading from "./components/Loading";
+import RowInteraction from "./components/Menu/Overlay/RowInteraction";
 
 type Page =
   | "Pokedex"
@@ -38,22 +37,22 @@ export default function App() {
   const [page, setPage] = useState<Page>("Pokedex");
   return (
     <Provider store={store}>
-      <View style={{ flex: 1, backgroundColor: colors.black }}>
+      <View style={{ flex: 1, backgroundColor: colors.primary }}>
         <View
           style={{
             position: "absolute",
-            bottom: 160,
-            top: 50,
+            bottom: 130,
+            top: 60,
             width: "100%",
           }}
         >
           <View style={{ flex: 1 }}>
+            <Text style={commonstyles.title}>{page?.toUpperCase()}</Text>
             <DisplayPage page={page} />
           </View>
         </View>
-        <OverlayMenu page={page} />
         <MainMenu page={page} onSelectPage={setPage} />
-        <Search page={page} />
+        <RowInteraction page={page} />
         <Loading />
       </View>
     </Provider>

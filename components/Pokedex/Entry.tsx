@@ -49,12 +49,13 @@ const Entry = (props: { pokedexEntry: PokedexEntry }) => {
 
 const styles = StyleSheet.create({
   pokemonName: {
-    color: colors.light,
+    color: colors.black,
     fontWeight: "bold",
     fontSize: sizes.fonts.medium,
+    maxWidth: 120,
   },
   pokemonDexNumber: {
-    color: colors.light,
+    color: colors.black,
     fontStyle: "italic",
     fontSize: sizes.fonts.small,
   },
@@ -69,12 +70,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   entryContainer: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.light,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: colors.primary,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: colors.primary,
   },
 });
 

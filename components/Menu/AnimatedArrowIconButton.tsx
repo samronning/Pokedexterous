@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import IconButton, { IconButtonProps } from "../Common/IconButton";
-import { View, Animated } from "react-native";
+import { View, Text, Animated } from "react-native";
+import commonstyles from "../../commonstyles";
 
 type AnimatedArrowIconButtonProps = {
   onPress: IconButtonProps["onPress"];
@@ -30,24 +31,27 @@ const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
     }
   };
   return (
-    <Animated.View style={{ transform: [{ rotate: rotationDeg }] }}>
-      <IconButton
-        color="light"
-        highlightColor="light"
-        iconName="arrow-up"
-        onPress={() => {
-          if (isDown) {
-            spinArrow("up");
-            setIsDown(false);
-          } else {
-            spinArrow("down");
-            setIsDown(true);
-          }
-          onPress();
-        }}
-        size="small"
-      />
-    </Animated.View>
+    <View>
+      <Animated.View style={{ transform: [{ rotate: rotationDeg }] }}>
+        <IconButton
+          color="light"
+          highlightColor="light"
+          iconName="arrow-up"
+          onPress={() => {
+            if (isDown) {
+              spinArrow("up");
+              setIsDown(false);
+            } else {
+              spinArrow("down");
+              setIsDown(true);
+            }
+            onPress();
+          }}
+          size="small"
+        />
+      </Animated.View>
+      <Text style={commonstyles.lightCenteredText}>Menu</Text>
+    </View>
   );
 };
 export default AnimatedArrowIconButton;
