@@ -41,7 +41,7 @@ export default function App() {
         <View
           style={{
             position: "absolute",
-            bottom: Platform.OS === "ios" ? 190 : 130,
+            bottom: 190,
             top: 60,
             width: "100%",
           }}
