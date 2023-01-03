@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { useState } from "react";
+import { View, Text, Platform } from "react-native";
 import MainMenu from "./components/Menu/MainMenu";
 import commonstyles from "./commonstyles";
 import { Pokedex, Moves } from "./screens";
@@ -41,7 +41,7 @@ export default function App() {
         <View
           style={{
             position: "absolute",
-            bottom: 130,
+            bottom: Platform.OS === "ios" ? 190 : 130,
             top: 60,
             width: "100%",
           }}

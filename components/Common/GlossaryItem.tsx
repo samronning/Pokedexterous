@@ -11,12 +11,16 @@ const GlossaryItem = (props: GlossaryItemProps) => {
   const { heading, children, direction, size } = props;
   return (
     <View
-      style={{ flexDirection: direction || "column", alignItems: "center" }}
+      style={{
+        flexDirection: direction || "column",
+        alignItems: "center",
+      }}
     >
       <Text
         style={{
           fontWeight: "bold",
           fontSize: size ? sizes.fonts[size] : sizes.fonts.medium,
+          paddingBottom: size ? sizes.fonts[size] / 3 : sizes.fonts.medium / 3,
         }}
       >
         {heading[0].toUpperCase() + heading.slice(1)}:{" "}

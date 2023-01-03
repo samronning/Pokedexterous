@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import Search from "./Search";
 import FilterModal from "./Filter/FilterModal";
 import SortModal from "./Sort/SortModal";
@@ -26,10 +26,10 @@ const RowInteraction = ({ page }: { page: Page }) => {
       );
   }
 };
-
 const styles = StyleSheet.create({
   overlayMenu: {
     position: "absolute",
+    paddingBottom: Platform.OS === "ios" ? 20 : 0,
     bottom: 0,
     width: "100%",
     justifyContent: "space-around",

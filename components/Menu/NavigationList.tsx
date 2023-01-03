@@ -1,7 +1,5 @@
-import { View, Text } from "react-native";
-import colors from "../../colors";
+import { View } from "react-native";
 import IconButton, { IconName } from "../Common/IconButton";
-import commonstyles from "../../commonstyles";
 import { Page } from "../../App";
 
 type NavigationProp = {
@@ -31,6 +29,7 @@ const NavigationList = (props: NavigationListProps) => {
     return (
       <View style={{ margin: 10 }} key={title}>
         <IconButton
+          text={title}
           onPress={() => {
             onItemSelection(title);
           }}
@@ -38,9 +37,6 @@ const NavigationList = (props: NavigationListProps) => {
           iconName={icon}
           size="small"
         />
-        <Text style={{ color: colors.light, textAlign: "center" }}>
-          {title}
-        </Text>
       </View>
     );
   };

@@ -32,25 +32,24 @@ const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
   };
   return (
     <View>
-      <Animated.View style={{ transform: [{ rotate: rotationDeg }] }}>
-        <IconButton
-          color="light"
-          highlightColor="light"
-          iconName="arrow-up"
-          onPress={() => {
-            if (isDown) {
-              spinArrow("up");
-              setIsDown(false);
-            } else {
-              spinArrow("down");
-              setIsDown(true);
-            }
-            onPress();
-          }}
-          size="small"
-        />
-      </Animated.View>
-      <Text style={commonstyles.lightCenteredText}>Menu</Text>
+      <IconButton
+        text="Menu"
+        color="light"
+        highlightColor="light"
+        iconName="arrow-up"
+        animatedTransform={[{ rotate: rotationDeg }]}
+        onPress={(e) => {
+          if (isDown) {
+            spinArrow("up");
+            setIsDown(false);
+          } else {
+            spinArrow("down");
+            setIsDown(true);
+          }
+          onPress && onPress(e);
+        }}
+        size="small"
+      />
     </View>
   );
 };

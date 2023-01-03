@@ -12,15 +12,18 @@ const SortModal = ({ page }: { page: Page }) => {
         style={{
           height: "100%",
           justifyContent: "flex-start",
+          paddingVertical: 20,
           alignItems: "center",
         }}
       >
         <GlossaryItem heading="order" size="large">
           <Direction />
         </GlossaryItem>
-        <GlossaryItem heading="categories" size="large">
-          <Categories page={page} />
-        </GlossaryItem>
+        <View style={{ marginVertical: 20 }}>
+          <GlossaryItem heading="categories" size="large">
+            <Categories page={page} />
+          </GlossaryItem>
+        </View>
       </View>
     </IconModal>
   );

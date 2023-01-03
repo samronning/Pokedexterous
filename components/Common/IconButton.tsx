@@ -1,9 +1,19 @@
-import { Pressable, Text, View, GestureResponderEvent } from "react-native";
+import {
+  Pressable,
+  Text,
+  View,
+  Animated,
+  TransformsStyle,
+  GestureResponderEvent,
+  RotateTransform,
+} from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import colors, { alpha } from "../../colors";
 import sizes from "../../sizes";
 import { keys } from "lodash";
+
+type Transforms = Animated.WithAnimatedArray<RotateTransform>;
 
 type FontAwesomeName = keyof typeof FontAwesome.glyphMap;
 type MaterialCommunityName = keyof typeof MaterialCommunityIcons.glyphMap;
@@ -37,6 +47,7 @@ const PackLoader = ({
 
 type IconButtonProps = {
   text?: string;
+  animatedTransform?: Transforms;
   iconName: IconName;
   color: keyof typeof colors;
   highlightColor?: keyof typeof colors;
@@ -49,6 +60,7 @@ type IconButtonProps = {
 const IconButton: React.FC<IconButtonProps> = (props) => {
   const {
     text,
+    animatedTransform,
     iconName,
     color,
     highlightColor,
@@ -61,25 +73,26 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
   const chosenSize = size ? sizes.icon[size] : sizes.icon.medium;
   const chosenFontSize = size ? sizes.fonts[size] : sizes.fonts.medium;
   return (
-    <View
+    <Pressable
+      onPress={onPress}
+      android_ripple={{
+        color: alpha(highlightColor || color, "thin"),
+        radius: 100,
+      }}
       style={{
         margin: margin || 2,
       }}
     >
-      <Pressable
-        onPress={onPress}
-        android_ripple={{
-          color: alpha(highlightColor || color, "thin"),
-          radius: chosenSize / 2 + 4,
-        }}
+      <Animated.View
         style={{
+          transform: animatedTransform,
           justifyContent: "center",
           alignItems: "center",
           padding: 4,
         }}
       >
         <PackLoader name={iconName} color={colors[color]} size={chosenSize} />
-      </Pressable>
+      </Animated.View>
       {text && (
         <Text
           style={{
@@ -95,7 +108,7 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
           {text}
         </Text>
       )}
-    </View>
+    </Pressable>
   );
 };
 
