@@ -80,7 +80,9 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
         radius: 100,
       }}
       style={{
-        margin: margin || 2,
+        marginHorizontal: margin || 2,
+        maxWidth: 100,
+        paddingHorizontal: 2,
       }}
     >
       <Animated.View
