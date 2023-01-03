@@ -35,7 +35,9 @@ const MainMenu = (props: MainMenuProps) => {
 
   return (
     <View style={styles.menuOverlay}>
-      <Pressable style={{ flex: 1 }} onPress={() => setIsOpen(false)} />
+      {isOpen && (
+        <Pressable style={{ flex: 1 }} onPress={() => setIsOpen(false)} />
+      )}
       <Animated.View
         style={{
           ...styles.menu,
