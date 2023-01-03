@@ -1,11 +1,20 @@
+import { useState } from "react";
 import { View } from "react-native";
 import IconModal from "../../../Common/IconModal";
 import GenerationSelect from "./GenerationSelect";
 import GlossaryItem from "../../../Common/GlossaryItem";
 
 const FilterModal = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <IconModal iconName="filter" color="light" title="Filter" size="small">
+    <IconModal
+      open={open}
+      setOpen={setOpen}
+      iconName="filter"
+      color="light"
+      title="Filter"
+      size="small"
+    >
       <View
         style={{
           flexDirection: "column",
@@ -15,7 +24,7 @@ const FilterModal = () => {
         }}
       >
         <GlossaryItem heading="generation">
-          <GenerationSelect />
+          <GenerationSelect onSuperClose={() => setOpen(false)} />
         </GlossaryItem>
       </View>
     </IconModal>

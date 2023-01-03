@@ -11,9 +11,10 @@ type SelectionProps = {
   data: { key: string; name: string }[];
   selectedIndex: number;
   onSelect: Dispatch<number>;
+  onSuperClose?: () => void;
 };
 const Selection = (props: SelectionProps) => {
-  const { data, title, selectedIndex, onSelect } = props;
+  const { data, title, selectedIndex, onSelect, onSuperClose } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   type SelectionRowProps = { item: any; index: number };
@@ -66,6 +67,7 @@ const Selection = (props: SelectionProps) => {
         onRequestClose={() => {
           setIsOpen(false);
         }}
+        onSuperClose={onSuperClose}
       >
         <View
           style={{

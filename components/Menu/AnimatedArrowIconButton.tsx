@@ -1,13 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import IconButton, { IconButtonProps } from "../Common/IconButton";
 import { View, Text, Animated } from "react-native";
 import commonstyles from "../../commonstyles";
 
 type AnimatedArrowIconButtonProps = {
   onPress: IconButtonProps["onPress"];
+  isOpen: boolean;
 };
 const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
-  const { onPress } = props;
+  const { onPress, isOpen } = props;
   const [isDown, setIsDown] = useState(false);
   const rotationRef = useRef(new Animated.Value(0));
   const spinDown = Animated.spring(rotationRef.current, {
@@ -30,6 +31,14 @@ const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
         return spinUp.start();
     }
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      spinArrow("up");
+    } else {
+      spinArrow("down");
+    }
+  }, [isOpen]);
   return (
     <View>
       <IconButton
@@ -39,13 +48,6 @@ const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
         iconName="arrow-up"
         animatedTransform={[{ rotate: rotationDeg }]}
         onPress={(e) => {
-          if (isDown) {
-            spinArrow("up");
-            setIsDown(false);
-          } else {
-            spinArrow("down");
-            setIsDown(true);
-          }
           onPress && onPress(e);
         }}
         size="small"

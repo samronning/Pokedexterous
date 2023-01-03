@@ -11,7 +11,7 @@ type Generation = {
   key: string;
 };
 
-const GenerationSelect = () => {
+const GenerationSelect = ({ onSuperClose }: { onSuperClose: () => void }) => {
   const [generations, setGenerations] = useState<Generation[]>([]);
   const selectedGeneration = useAppSelector(selectGeneration);
   const dispatch = useAppDispatch();
@@ -39,6 +39,7 @@ const GenerationSelect = () => {
             dispatch(setGeneration(selection === 0 ? "" : selection))
           }
           title="Generation"
+          onSuperClose={onSuperClose}
         />
       )}
     </View>

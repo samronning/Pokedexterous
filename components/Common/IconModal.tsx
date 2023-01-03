@@ -1,17 +1,31 @@
 import IconButton, { IconButtonProps } from "./IconButton";
 import CommonModal from "./CommonModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type IconModalProps = Omit<IconButtonProps, "onPress"> & {
+  open?: boolean;
+  setOpen?: (open: boolean) => void;
   onPress?: IconButtonProps["onPress"];
   children: any;
   title: string;
 };
 
 const IconModal = (props: IconModalProps) => {
-  const { children, title, size, color, highlightColor, iconName, onPress } =
-    props;
-  const [isOpen, setIsOpen] = useState(false);
+  const {
+    open,
+    setOpen,
+    children,
+    title,
+    size,
+    color,
+    highlightColor,
+    iconName,
+    onPress,
+  } = props;
+  const [isOpen, setIsOpen] = useState(open || false);
+  useEffect(() => {
+    setIsOpen(open || false);
+  }, [open]);
   return (
     <>
       <CommonModal
@@ -20,6 +34,7 @@ const IconModal = (props: IconModalProps) => {
         visible={isOpen}
         title={title}
         onRequestClose={() => {
+          setOpen && setOpen(false);
           setIsOpen(false);
         }}
       >
@@ -28,6 +43,7 @@ const IconModal = (props: IconModalProps) => {
       <IconButton
         onPress={(e) => {
           onPress && onPress(e);
+          setOpen && setOpen(true);
           setIsOpen(true);
         }}
         iconName={iconName}

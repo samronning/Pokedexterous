@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Animated, Text, StyleSheet } from "react-native";
+import { View, Animated, Text, StyleSheet, Pressable } from "react-native";
 import colors from "../../colors";
 import AnimatedArrowIconButton from "./AnimatedArrowIconButton";
 import NavigationList from "./NavigationList";
@@ -13,6 +13,7 @@ type MainMenuProps = {
 const MainMenu = (props: MainMenuProps) => {
   const { page, onSelectPage } = props;
   const [isOpen, setIsOpen] = useState(false);
+
   const transYValRef = useRef(new Animated.Value(-100));
 
   const openAnim = Animated.spring(transYValRef.current, {
@@ -24,30 +25,42 @@ const MainMenu = (props: MainMenuProps) => {
     useNativeDriver: true,
   });
 
+  useEffect(() => {
+    if (!isOpen) {
+      closeAnim.start();
+    } else {
+      openAnim.start();
+    }
+  }, [isOpen]);
+
   return (
-    <Animated.View
-      style={{
-        ...styles.Menu,
-        transform: [{ translateY: transYValRef.current }],
-      }}
-    >
-      <AnimatedArrowIconButton
-        onPress={() => {
-          if (isOpen) {
-            closeAnim.start();
-          } else {
-            openAnim.start();
-          }
-          setIsOpen((prev) => !prev);
+    <View style={styles.menuOverlay}>
+      <Pressable style={{ flex: 1 }} onPress={() => setIsOpen(false)} />
+      <Animated.View
+        style={{
+          ...styles.menu,
+          transform: [{ translateY: transYValRef.current }],
         }}
-      />
-      <NavigationList onItemSelection={onSelectPage} />
-    </Animated.View>
+      >
+        <AnimatedArrowIconButton
+          onPress={() => {
+            setIsOpen((prev) => !prev);
+          }}
+          isOpen={isOpen}
+        />
+        <NavigationList onItemSelection={onSelectPage} />
+      </Animated.View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  Menu: {
+  menuOverlay: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
+  menu: {
     alignItems: "center",
     backgroundColor: colors.primary,
     position: "absolute",
