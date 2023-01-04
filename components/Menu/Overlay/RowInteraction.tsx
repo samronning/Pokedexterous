@@ -10,21 +10,16 @@ import { Page } from "../../../App";
 This component determines which (if any) overlays to display depending on the page
 */
 const RowInteraction = ({ page }: { page: Page }) => {
-  switch (page) {
-    case "Natures" || "Types":
-      return null;
-    default:
-      return (
-        <View style={styles.overlayMenu}>
-          <Search page={page} />
-          <View style={styles.rowInteractionButtons}>
-            <ViewModal />
-            <FilterModal />
-            <SortModal page={page} />
-          </View>
-        </View>
-      );
-  }
+  return (
+    <View style={styles.overlayMenu}>
+      <Search page={page} />
+      <View style={styles.rowInteractionButtons}>
+        <ViewModal />
+        <FilterModal />
+        <SortModal page={page} />
+      </View>
+    </View>
+  );
 };
 const styles = StyleSheet.create({
   overlayMenu: {

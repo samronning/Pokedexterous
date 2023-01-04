@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Loading from "./components/Loading";
 import RowInteraction from "./components/Menu/Overlay/RowInteraction";
+import Types from "./screens/Types";
 
 type Page =
   | "Pokedex"
@@ -24,6 +25,8 @@ const DisplayPage = ({ page }: { page: Page }) => {
       return <Pokedex />;
     case "Moves":
       return <Moves />;
+    case "Types":
+      return <Types />;
     default:
       return (
         <View style={commonstyles.centeredView}>
@@ -35,13 +38,14 @@ const DisplayPage = ({ page }: { page: Page }) => {
 
 export default function App() {
   const [page, setPage] = useState<Page>("Pokedex");
+  const hasRowInteraction = page !== "Types" && page !== "Natures";
   return (
     <Provider store={store}>
       <View style={{ flex: 1, backgroundColor: colors.primary }}>
         <View
           style={{
             position: "absolute",
-            bottom: 190,
+            bottom: hasRowInteraction ? 190 : 90,
             top: 60,
             width: "100%",
           }}
@@ -51,8 +55,12 @@ export default function App() {
             <DisplayPage page={page} />
           </View>
         </View>
-        <MainMenu page={page} onSelectPage={setPage} />
-        <RowInteraction page={page} />
+        <MainMenu
+          page={page}
+          hasRowInteraction={hasRowInteraction}
+          onSelectPage={setPage}
+        />
+        {hasRowInteraction && <RowInteraction page={page} />}
         <Loading />
       </View>
     </Provider>

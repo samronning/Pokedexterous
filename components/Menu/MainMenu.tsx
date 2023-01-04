@@ -7,21 +7,22 @@ import { Page } from "../../App";
 
 type MainMenuProps = {
   page: Page;
+  hasRowInteraction: boolean;
   onSelectPage: React.Dispatch<React.SetStateAction<Page>>;
 };
 
 const MainMenu = (props: MainMenuProps) => {
-  const { page, onSelectPage } = props;
+  const { page, hasRowInteraction, onSelectPage } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const transYValRef = useRef(new Animated.Value(-100));
 
   const openAnim = Animated.spring(transYValRef.current, {
-    toValue: -260,
+    toValue: hasRowInteraction ? -260 : -150,
     useNativeDriver: true,
   });
   const closeAnim = Animated.spring(transYValRef.current, {
-    toValue: -100,
+    toValue: hasRowInteraction ? -100 : 10,
     useNativeDriver: true,
   });
 
@@ -31,7 +32,7 @@ const MainMenu = (props: MainMenuProps) => {
     } else {
       openAnim.start();
     }
-  }, [isOpen]);
+  }, [isOpen, hasRowInteraction]);
 
   return (
     <View style={styles.menuOverlay}>
