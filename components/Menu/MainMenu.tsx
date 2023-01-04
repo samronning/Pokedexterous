@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { View, Animated, Text, StyleSheet, Pressable } from "react-native";
 import colors from "../../colors";
-import AnimatedArrowIconButton from "./AnimatedArrowIconButton";
+import AnimatedMenuButton from "./AnimatedMenuButton";
 import NavigationList from "./NavigationList";
 import { Page } from "../../App";
 
@@ -44,7 +44,7 @@ const MainMenu = (props: MainMenuProps) => {
           transform: [{ translateY: transYValRef.current }],
         }}
       >
-        <AnimatedArrowIconButton
+        <AnimatedMenuButton
           onPress={() => {
             setIsOpen((prev) => !prev);
           }}

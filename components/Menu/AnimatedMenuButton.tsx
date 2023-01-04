@@ -3,40 +3,39 @@ import IconButton, { IconButtonProps } from "../Common/IconButton";
 import { View, Text, Animated } from "react-native";
 import commonstyles from "../../commonstyles";
 
-type AnimatedArrowIconButtonProps = {
+type AnimatedMenuButtonProps = {
   onPress: IconButtonProps["onPress"];
   isOpen: boolean;
 };
-const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
+const AnimatedMenuButton = (props: AnimatedMenuButtonProps) => {
   const { onPress, isOpen } = props;
-  const [isDown, setIsDown] = useState(false);
   const rotationRef = useRef(new Animated.Value(0));
-  const spinDown = Animated.spring(rotationRef.current, {
+  const spinRight = Animated.spring(rotationRef.current, {
     toValue: 1,
     useNativeDriver: true,
   });
-  const spinUp = Animated.spring(rotationRef.current, {
+  const spinLeft = Animated.spring(rotationRef.current, {
     toValue: 0,
     useNativeDriver: true,
   });
   const rotationDeg = rotationRef.current.interpolate({
     inputRange: [0, 1],
-    outputRange: ["0deg", "180deg"],
+    outputRange: ["0deg", "45deg"],
   });
-  const spinArrow: (direction: "down" | "up") => void = (direction) => {
+  const spinIcon: (direction: "right" | "left") => void = (direction) => {
     switch (direction) {
-      case "down":
-        return spinDown.start();
-      case "up":
-        return spinUp.start();
+      case "right":
+        return spinRight.start();
+      case "left":
+        return spinLeft.start();
     }
   };
 
   useEffect(() => {
     if (!isOpen) {
-      spinArrow("up");
+      spinIcon("left");
     } else {
-      spinArrow("down");
+      spinIcon("right");
     }
   }, [isOpen]);
   return (
@@ -45,7 +44,7 @@ const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
         text="Menu"
         color="light"
         highlightColor="light"
-        iconName="arrow-up"
+        iconName="plus"
         animatedTransform={[{ rotate: rotationDeg }]}
         onPress={(e) => {
           onPress && onPress(e);
@@ -55,4 +54,4 @@ const AnimatedArrowIconButton = (props: AnimatedArrowIconButtonProps) => {
     </View>
   );
 };
-export default AnimatedArrowIconButton;
+export default AnimatedMenuButton;
