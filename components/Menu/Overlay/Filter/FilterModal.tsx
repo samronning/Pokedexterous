@@ -17,13 +17,12 @@ const FilterModal = () => {
     >
       <View
         style={{
-          flexDirection: "column",
           alignItems: "flex-start",
           height: "100%",
           padding: 10,
         }}
       >
-        <GlossaryItem heading="generation">
+        <GlossaryItem heading="generation" direction="row">
           <GenerationSelect onSuperClose={() => setOpen(false)} />
         </GlossaryItem>
       </View>

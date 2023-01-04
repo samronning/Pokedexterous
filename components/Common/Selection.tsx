@@ -1,5 +1,11 @@
-import { useState, Dispatch, SetStateAction } from "react";
-import { FlatList, Text, View, Pressable } from "react-native";
+import { useState, Dispatch } from "react";
+import {
+  FlatList,
+  Text,
+  View,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import colors, { alpha } from "../../colors";
 import sizes from "../../sizes";
 import CommonModal from "./CommonModal";
@@ -11,10 +17,11 @@ type SelectionProps = {
   data: { key: string; name: string }[];
   selectedIndex: number;
   onSelect: Dispatch<number>;
+  loading: boolean;
   onSuperClose?: () => void;
 };
 const Selection = (props: SelectionProps) => {
-  const { data, title, selectedIndex, onSelect, onSuperClose } = props;
+  const { data, title, selectedIndex, loading, onSelect, onSuperClose } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   type SelectionRowProps = { item: any; index: number };
@@ -51,7 +58,7 @@ const Selection = (props: SelectionProps) => {
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <PressableTextButton
         text={
-          data[selectedIndex].name
+          data[selectedIndex]?.name
             ? data[selectedIndex].name
             : "data loading..."
         }
@@ -77,7 +84,11 @@ const Selection = (props: SelectionProps) => {
             padding: 10,
           }}
         >
-          <FlatList data={data} renderItem={SelectionRow} />
+          {loading ? (
+            <ActivityIndicator color={colors.primary} />
+          ) : (
+            <FlatList data={data} renderItem={SelectionRow} />
+          )}
         </View>
       </CommonModal>
     </View>
