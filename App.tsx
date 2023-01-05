@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, Platform } from "react-native";
+import { View, Text } from "react-native";
 import MainMenu from "./components/Menu/MainMenu";
 import commonstyles from "./commonstyles";
 import { Pokedex, Moves } from "./screens";
@@ -7,17 +7,11 @@ import colors from "./colors";
 import { Provider } from "react-redux";
 import store from "./store";
 import Loading from "./components/Loading";
+import FilterIndicator from "./components/Menu/FilterIndicator";
 import RowInteraction from "./components/Menu/Overlay/RowInteraction";
 import Types from "./screens/Types";
 
-type Page =
-  | "Pokedex"
-  | "Moves"
-  | "Natures"
-  | "Types"
-  | "Abilities"
-  | "Items"
-  | undefined;
+type Page = "Pokedex" | "Moves" | "Natures" | "Types" | "Abilities" | "Items";
 
 const DisplayPage = ({ page }: { page: Page }) => {
   switch (page) {
@@ -61,6 +55,7 @@ export default function App() {
           onSelectPage={setPage}
         />
         {hasRowInteraction && <RowInteraction page={page} />}
+        {hasRowInteraction && <FilterIndicator page={page} />}
         <Loading />
       </View>
     </Provider>

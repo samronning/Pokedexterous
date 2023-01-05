@@ -6,11 +6,15 @@ import { SortColumn } from "../../../../../slices/sort";
 import { useAppSelector, useAppDispatch } from "../../../../../hooks/redux";
 import { selectSort, setSort } from "../../../../../slices/sort";
 
-const pageToCategoryMap = {
+const pageToCategoryMap: Partial<Record<Page, CategoryList>> = {
   Pokedex: pokedexCategories,
 };
 
-const CategoryRender = ({ categoryList }: { categoryList: CategoryList }) => {
+const CategoryRender = ({
+  categoryList,
+}: {
+  categoryList: CategoryList | undefined;
+}) => {
   const sortObj = useAppSelector(selectSort);
   const dispatch = useAppDispatch();
   return (
@@ -22,31 +26,34 @@ const CategoryRender = ({ categoryList }: { categoryList: CategoryList }) => {
         justifyContent: "space-evenly",
       }}
     >
-      {categoryList.map((category) => {
-        return (
-          <View style={{}} key={category.column}>
-            <IconButton
-              iconName={category.iconName}
-              color="primary"
-              size="small"
-              border={category.column === sortObj.column}
-              text={category.displayText}
-              onPress={() => {
-                dispatch(setSort({ ...sortObj, column: category.column }));
-              }}
-            />
-          </View>
-        );
-      })}
+      {categoryList &&
+        categoryList.map((category) => {
+          return (
+            <View style={{}} key={category.column}>
+              <IconButton
+                iconName={category.iconName}
+                color="primary"
+                size="small"
+                border={category.column === sortObj.column}
+                text={category.displayText}
+                onPress={() => {
+                  dispatch(setSort({ ...sortObj, column: category.column }));
+                }}
+              />
+            </View>
+          );
+        })}
     </View>
   );
 };
 
-type CategoryList = {
+type Category = {
   column: SortColumn;
   displayText: string;
   iconName: IconName;
-}[];
+};
+
+type CategoryList = Category[];
 
 const Categories = ({ page }: { page: Page }) => {
   switch (page) {
@@ -59,4 +66,4 @@ const Categories = ({ page }: { page: Page }) => {
 };
 
 export default Categories;
-export { CategoryList };
+export { Category, CategoryList, pageToCategoryMap };

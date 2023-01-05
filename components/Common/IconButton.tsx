@@ -4,7 +4,7 @@ import Icon, { IconProps, IconName } from "./Icon";
 
 type IconButtonProps = {
   margin?: number;
-  highlightColor: keyof typeof colors;
+  highlightColor?: keyof typeof colors;
   onPress: ((event: GestureResponderEvent) => void) | null | undefined;
 } & IconProps;
 const IconButton: React.FC<IconButtonProps> = (props) => {
