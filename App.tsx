@@ -39,7 +39,7 @@ export default function App() {
         <View
           style={{
             position: "absolute",
-            bottom: hasRowInteraction ? 190 : 90,
+            bottom: hasRowInteraction ? 190 : 70,
             top: 60,
             width: "100%",
           }}

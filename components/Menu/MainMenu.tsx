@@ -22,7 +22,7 @@ const MainMenu = (props: MainMenuProps) => {
     useNativeDriver: true,
   });
   const closeAnim = Animated.spring(transYValRef.current, {
-    toValue: hasRowInteraction ? -100 : 10,
+    toValue: hasRowInteraction ? -100 : 20,
     useNativeDriver: true,
   });
 
