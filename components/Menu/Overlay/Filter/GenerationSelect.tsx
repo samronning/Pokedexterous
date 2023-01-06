@@ -13,6 +13,12 @@ type Generation = {
 
 const GenerationSelect = ({ onSuperClose }: { onSuperClose: () => void }) => {
   const [generations, setGenerations] = useState<Generation[]>([]);
+  const generationsObj = generations.reduce(
+    (acc, cur) => ({ ...acc, [cur.key]: { name: cur.name } }),
+    {
+      "0": { name: "all - national" },
+    }
+  );
   const [loading, setLoading] = useState(false);
   const selectedGeneration = useAppSelector(selectGeneration);
   const dispatch = useAppDispatch();
@@ -33,13 +39,12 @@ const GenerationSelect = ({ onSuperClose }: { onSuperClose: () => void }) => {
   return (
     <View>
       <Selection
+        isInnerModal={true}
         loading={loading}
-        data={[{ key: "0", name: `all - national` }, ...generations]}
-        selectedIndex={
-          selectedGeneration === "" ? 0 : Number(selectedGeneration)
-        }
+        data={generationsObj}
+        selectedKey={selectedGeneration === "" ? "0" : selectedGeneration}
         onSelect={(selection) =>
-          dispatch(setGeneration(selection === 0 ? "" : selection))
+          dispatch(setGeneration(selection === "0" ? "" : selection))
         }
         title="Generation"
         onSuperClose={onSuperClose}

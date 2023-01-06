@@ -16,11 +16,11 @@ const SortModal = ({ page }: { page: Page }) => {
           alignItems: "center",
         }}
       >
-        <GlossaryItem heading="order" size="large">
+        <GlossaryItem heading="Order" size="large">
           <Direction />
         </GlossaryItem>
         <View style={{ marginVertical: 20 }}>
-          <GlossaryItem heading="categories" size="large">
+          <GlossaryItem heading="Categories" size="large">
             <Categories page={page} />
           </GlossaryItem>
         </View>

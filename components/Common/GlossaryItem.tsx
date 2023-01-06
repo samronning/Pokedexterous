@@ -6,9 +6,10 @@ type GlossaryItemProps = {
   children: any;
   size?: "small" | "medium" | "large";
   direction?: "column" | "row";
+  underline?: boolean;
 };
 const GlossaryItem = (props: GlossaryItemProps) => {
-  const { heading, children, direction, size } = props;
+  const { heading, children, direction, size, underline } = props;
   return (
     <View
       style={{
@@ -21,9 +22,11 @@ const GlossaryItem = (props: GlossaryItemProps) => {
           fontWeight: "bold",
           fontSize: size ? sizes.fonts[size] : sizes.fonts.medium,
           paddingBottom: size ? sizes.fonts[size] / 3 : sizes.fonts.medium / 3,
+          textDecorationLine: underline ? "underline" : "none",
         }}
       >
-        {heading[0].toUpperCase() + heading.slice(1)}:{" "}
+        {heading}
+        {!underline && ": "}
       </Text>
       {children}
     </View>

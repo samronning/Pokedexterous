@@ -67,13 +67,7 @@ const Pokedex = () => {
     );
   }, [selectedGeneration, searchTerm, sortObj]);
   return (
-    <View
-      style={{
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-      }}
-    >
+    <View>
       <EntryRender pokedexEntries={pokedexEntries} />
     </View>
   );

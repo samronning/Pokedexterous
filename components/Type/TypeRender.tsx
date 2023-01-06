@@ -1,17 +1,16 @@
-import types from "./Types";
+import types, { TypeName } from "./Types";
 import { memo } from "react";
 import { View, Text } from "react-native";
 import colors from "../../colors";
 import sizes from "../../sizes";
 
-type TypeId = keyof typeof types;
-type TypeBoxProps = { typeId: TypeId };
+type TypeBoxProps = { typeName: TypeName };
 const TypeBox = memo((props: TypeBoxProps) => {
-  const { typeId } = props;
+  const { typeName } = props;
   return (
     <View
       style={{
-        backgroundColor: types[typeId].color,
+        backgroundColor: types[typeName].color,
         marginVertical: 2,
         width: 80,
         padding: 3,
@@ -25,20 +24,20 @@ const TypeBox = memo((props: TypeBoxProps) => {
     >
       <Text
         style={{
-          color: types[typeId].darkText ? colors.black : colors.white,
+          color: types[typeName].darkText ? colors.black : colors.white,
           fontSize: sizes.fonts.tiny,
           fontWeight: "bold",
         }}
       >
-        {types[typeId].name.toUpperCase()}
+        {typeName.toUpperCase()}
       </Text>
     </View>
   );
 });
 
-type TypeRenderProps = { typeId1: TypeId; typeId2?: TypeId };
+type TypeRenderProps = { typeName1: TypeName; typeName2?: TypeName };
 const TypeRender = (props: TypeRenderProps) => {
-  const { typeId1, typeId2 } = props;
+  const { typeName1, typeName2 } = props;
   return (
     <View
       style={{
@@ -47,8 +46,8 @@ const TypeRender = (props: TypeRenderProps) => {
         alignItems: "center",
       }}
     >
-      <TypeBox typeId={typeId1} />
-      {typeId2 && <TypeBox typeId={typeId2} />}
+      <TypeBox typeName={typeName1} />
+      {typeName2 && <TypeBox typeName={typeName2} />}
     </View>
   );
 };

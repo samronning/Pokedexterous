@@ -12,29 +12,51 @@ import CommonModal from "./CommonModal";
 import "./PressableTextButton";
 import PressableTextButton from "./PressableTextButton";
 
+type Selection = { name: string; color?: string };
 type SelectionProps = {
   title: string;
-  data: { key: string; name: string }[];
-  selectedIndex: number;
-  onSelect: Dispatch<number>;
+  data: { [key: string]: Selection };
+  selectedKey: string;
+  onSelect: (key: string) => void;
   loading: boolean;
   onSuperClose?: () => void;
+  isInnerModal?: boolean;
+  disabled?: boolean;
+  disabledKey?: string;
 };
 const Selection = (props: SelectionProps) => {
-  const { data, title, selectedIndex, loading, onSelect, onSuperClose } = props;
+  const {
+    data,
+    title,
+    selectedKey,
+    loading,
+    onSelect,
+    onSuperClose,
+    isInnerModal,
+    disabled,
+    disabledKey,
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  type SelectionRowProps = { item: any; index: number };
+  const flatListData = Object.entries(data).map(([k, v]) => ({
+    ...v,
+    key: k,
+  }));
+
+  type SelectionRowProps = {
+    item: { name: string; key: string };
+  };
   const SelectionRow = (props: SelectionRowProps) => {
-    const { item, index } = props;
+    const { item } = props;
+    const { key, name } = item;
     return (
-      <Pressable onPress={() => onSelect(index)}>
+      <Pressable disabled={disabledKey === key} onPress={() => onSelect(key)}>
         <View
           style={{
             borderBottomWidth: 3,
             borderBottomColor: colors.dark,
             backgroundColor:
-              selectedIndex === index
+              selectedKey === key
                 ? alpha("dark", "thin")
                 : alpha("dark", "thick"),
             marginBottom: 2,
@@ -48,7 +70,7 @@ const Selection = (props: SelectionProps) => {
               fontWeight: "bold",
             }}
           >
-            {item.name}
+            {name}
           </Text>
         </View>
       </Pressable>
@@ -57,10 +79,9 @@ const Selection = (props: SelectionProps) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <PressableTextButton
+        disabled={disabled}
         text={
-          data[selectedIndex]?.name
-            ? data[selectedIndex].name
-            : "data loading..."
+          data[selectedKey]?.name ? data[selectedKey].name : "data loading..."
         }
         onPress={() => {
           setIsOpen(true);
@@ -70,7 +91,7 @@ const Selection = (props: SelectionProps) => {
         title={title}
         visible={isOpen}
         transparent={true}
-        isInnerModal={true}
+        isInnerModal={isInnerModal}
         onRequestClose={() => {
           setIsOpen(false);
         }}
@@ -87,7 +108,7 @@ const Selection = (props: SelectionProps) => {
           {loading ? (
             <ActivityIndicator color={colors.primary} />
           ) : (
-            <FlatList data={data} renderItem={SelectionRow} />
+            <FlatList data={flatListData} renderItem={SelectionRow} />
           )}
         </View>
       </CommonModal>

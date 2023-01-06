@@ -1,10 +1,10 @@
 import { View } from "react-native";
 import colors from "../colors";
-import TypeSelect from "../components/Types/TypeSelect";
+import SelectedTypesDisplay from "../components/Types/SelectedTypesDisplay";
 const Types = () => {
   return (
     <View style={{ backgroundColor: colors.light, flex: 1 }}>
-      <TypeSelect />
+      <SelectedTypesDisplay />
     </View>
   );
 };

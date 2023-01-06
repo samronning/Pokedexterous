@@ -22,7 +22,7 @@ const FilterModal = () => {
           padding: 10,
         }}
       >
-        <GlossaryItem heading="generation" direction="row">
+        <GlossaryItem heading="Generation" direction="row">
           <GenerationSelect onSuperClose={() => setOpen(false)} />
         </GlossaryItem>
       </View>

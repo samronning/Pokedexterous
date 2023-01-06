@@ -1,4 +1,5 @@
 import TypeRender from "../Type/TypeRender";
+import { TypeName } from "../Type/Types";
 import PokemonSprite from "./PokemonSprite";
 import { View, Text, StyleSheet } from "react-native";
 import colors, { alpha } from "../../colors";
@@ -10,7 +11,7 @@ import { memo } from "react";
 
 type PokedexEntry = {
   name: string;
-  type_ids: string;
+  type_names: string;
   dex_number: number;
   base_stats: string;
   base_stats_total: number;
@@ -19,14 +20,14 @@ type PokedexEntry = {
 };
 const Entry = (props: { pokedexEntry: PokedexEntry }) => {
   const { pokedexEntry } = props;
-  const { type_ids, name, dex_number, base_stats } = pokedexEntry;
-  const getTypeIds: (type_ids: string) => Array<keyof typeof types> = (
-    type_ids: string
+  const { type_names, name, dex_number, base_stats } = pokedexEntry;
+  const getTypeNames: (typeNames: string) => Array<TypeName> = (
+    typeNames: string
   ) => {
-    const ids = type_ids.split(",") as Array<keyof typeof types>;
+    const ids = typeNames.split(",") as Array<TypeName>;
     return ids;
   };
-  const [typeId1, typeId2] = getTypeIds(type_ids);
+  const [typeName1, typeName2] = getTypeNames(type_names);
   return (
     <View style={styles.entryContainer}>
       <View style={styles.dataContainer}>
@@ -38,7 +39,7 @@ const Entry = (props: { pokedexEntry: PokedexEntry }) => {
             dex_number,
             4
           )}`}</Text>
-          <TypeRender typeId1={typeId1} typeId2={typeId2} />
+          <TypeRender typeName1={typeName1} typeName2={typeName2} />
         </View>
         <Stats stats={base_stats.split(",").map((str) => Number(str))} />
       </View>
