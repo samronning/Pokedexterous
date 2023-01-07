@@ -80,6 +80,7 @@ const Selection = (props: SelectionProps) => {
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       {customButton ? (
         <Pressable
+          disabled={disabled}
           onPress={() => {
             setIsOpen(true);
           }}
@@ -90,13 +91,9 @@ const Selection = (props: SelectionProps) => {
         <PressableTextButton
           border={border}
           color={data[selectedKey]?.color}
-          disabled={disabled}
           text={
             data[selectedKey]?.name ? data[selectedKey].name : "data loading..."
           }
-          onPress={() => {
-            setIsOpen(true);
-          }}
         />
       )}
 

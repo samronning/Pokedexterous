@@ -1,18 +1,22 @@
 import types, { TypeName } from "./Types";
 import { memo } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ViewStyle } from "react-native";
 import colors from "../../colors";
 import sizes from "../../sizes";
 
-type TypeBoxProps = { typeName: TypeName };
+type TypeBoxProps = {
+  typeName: TypeName;
+  style?: ViewStyle;
+  efficacy?: number;
+};
 const TypeBox = memo((props: TypeBoxProps) => {
-  const { typeName } = props;
+  const { typeName, style, efficacy } = props;
   return (
     <View
       style={{
         backgroundColor: types[typeName].color,
         marginVertical: 2,
-        width: 80,
+        width: efficacy !== undefined ? 100 : 80,
         padding: 3,
         paddingHorizontal: 5,
         alignContent: "center",
@@ -20,6 +24,7 @@ const TypeBox = memo((props: TypeBoxProps) => {
         alignItems: "center",
         borderRadius: 50,
         borderColor: colors.black,
+        ...style,
       }}
     >
       <Text
@@ -30,6 +35,7 @@ const TypeBox = memo((props: TypeBoxProps) => {
         }}
       >
         {typeName.toUpperCase()}
+        {efficacy && efficacy !== 1 && ` | ${efficacy}`}
       </Text>
     </View>
   );

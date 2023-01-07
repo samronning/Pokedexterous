@@ -36,7 +36,7 @@ select
             pokemon_id = key
             and stat_id = 4
     ) as special_attack,
-(
+    (
         select
             base_stat
         from
@@ -70,7 +70,16 @@ from
                     p.name as 'name',
                     pdn.pokedex_number as dex_number,
                     p.id as pokemon_id,
-                    group_concat((select name from pokemon_v2_type where id = t.type_id)) as type_names
+                    group_concat(
+                        (
+                            select
+                                name
+                            from
+                                pokemon_v2_type
+                            where
+                                id = t.type_id
+                        )
+                    ) as type_names
                 from
                     pokemon_v2_pokemondexnumber as pdn
                     join pokemon_v2_pokemon as p on pdn.pokemon_species_id = p.id

@@ -10,6 +10,10 @@ const resources = {
     resource: require("./generations.sql"),
     fileName: "selectPokedex.sql",
   },
+  typeEfficacyByTypeName: {
+    resource: require("./typeEfficacyByTypeName.sql"),
+    fileName: "./typeEfficacyByTypeName.sql",
+  },
 };
 
 async function readSqlFile(
