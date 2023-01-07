@@ -12,7 +12,7 @@ const SelectedTypesDisplay = (props: Props) => {
     firstType === "none" && setSecondType("none");
   }, [firstType]);
   return (
-    <View>
+    <View style={{ justifyContent: "flex-end", flex: 1 }}>
       <TypeSelecting
         firstType={firstType}
         secondType={secondType}

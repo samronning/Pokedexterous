@@ -32,7 +32,7 @@ const TypeSelecting = (props: TypeSelectProps) => {
         },
       ].map(({ heading, ...other }) => (
         <View key={heading} style={{ margin: 5 }}>
-          <GlossaryItem direction="column" heading={heading} underline>
+          <GlossaryItem direction="column" heading={heading}>
             <TypeSelector title={heading} {...other} />
           </GlossaryItem>
         </View>

@@ -11,22 +11,23 @@ const colors = {
   green: "#00ff00",
   red: "#ff0000",
   yellow: "#ffff00",
+  clear: "#ffffff00",
 };
 
-const alpha = (
-  color: keyof typeof colors,
-  choice: "thin" | "medium" | "thick" | undefined
-) => {
-  switch (choice) {
+type Thickness = "thin" | "medium" | "thick" | undefined;
+const alpha = (color: keyof typeof colors, thickness: Thickness) => {
+  return alphaRaw(colors[color], thickness);
+};
+
+const alphaRaw = (rawColor: string, thickness: Thickness) => {
+  switch (thickness) {
     case "thin":
-      return colors[color] + "33";
+      return rawColor + "33";
     case "medium":
-      return colors[color] + "88";
+      return rawColor + "88";
     case "thick":
-      return colors[color] + "bb";
-    default:
-      return "#00000000";
+      return rawColor + "bb";
   }
 };
 export default colors;
-export { alpha };
+export { alpha, alphaRaw };

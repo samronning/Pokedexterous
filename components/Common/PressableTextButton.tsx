@@ -3,14 +3,17 @@ import colors from "../../colors";
 
 type PressableTextButtonProps = PressableProps & {
   text: string;
+  color?: string;
+  border?: boolean;
   disabled?: boolean;
 };
 const PressableTextButton = (props: PressableTextButtonProps) => {
-  const { text, ...other } = props;
+  const { text, border, color, ...other } = props;
   return (
     <Pressable
       style={{
-        borderWidth: 2,
+        backgroundColor: color,
+        borderWidth: border ? 2 : 0,
         borderRadius: 5,
         borderColor: colors.primary,
         padding: 5,

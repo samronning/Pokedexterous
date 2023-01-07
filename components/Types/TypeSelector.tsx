@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
 import { View } from "react-native";
 import Selection from "../Common/Selection";
+import { TypeBox } from "../Type/TypeRender";
 import types, { TypeName } from "../Type/Types";
 
 type TypeSelectionProps = {
@@ -16,8 +17,9 @@ const TypeSelection = (props: TypeSelectionProps) => {
   return (
     <View>
       <Selection
+        customButton={<TypeBox typeName={selectedType} />}
         disabled={!isFirstType && otherType === "none"}
-        disabledKey={otherType}
+        disabledKey={otherType !== "none" ? otherType : ""}
         selectedKey={selectedType}
         title={title}
         onSelect={(selectedType: string) => {

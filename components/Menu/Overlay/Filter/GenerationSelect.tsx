@@ -39,6 +39,7 @@ const GenerationSelect = ({ onSuperClose }: { onSuperClose: () => void }) => {
   return (
     <View>
       <Selection
+        border
         isInnerModal={true}
         loading={loading}
         data={generationsObj}

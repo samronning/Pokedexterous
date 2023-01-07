@@ -51,4 +51,5 @@ const TypeRender = (props: TypeRenderProps) => {
     </View>
   );
 };
+export { TypeBox };
 export default memo(TypeRender);

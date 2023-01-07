@@ -12,8 +12,9 @@ import CommonModal from "./CommonModal";
 import "./PressableTextButton";
 import PressableTextButton from "./PressableTextButton";
 
-type Selection = { name: string; color?: string };
+type Selection = { name: string; color?: string; darkText?: boolean };
 type SelectionProps = {
+  customButton?: any;
   title: string;
   data: { [key: string]: Selection };
   selectedKey: string;
@@ -23,9 +24,11 @@ type SelectionProps = {
   isInnerModal?: boolean;
   disabled?: boolean;
   disabledKey?: string;
+  border?: boolean;
 };
 const Selection = (props: SelectionProps) => {
   const {
+    customButton,
     data,
     title,
     selectedKey,
@@ -35,6 +38,7 @@ const Selection = (props: SelectionProps) => {
     isInnerModal,
     disabled,
     disabledKey,
+    border,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,7 +48,7 @@ const Selection = (props: SelectionProps) => {
   }));
 
   type SelectionRowProps = {
-    item: { name: string; key: string };
+    item: Selection & { key: string };
   };
   const SelectionRow = (props: SelectionRowProps) => {
     const { item } = props;
@@ -53,21 +57,17 @@ const Selection = (props: SelectionProps) => {
       <Pressable disabled={disabledKey === key} onPress={() => onSelect(key)}>
         <View
           style={{
-            borderBottomWidth: 3,
-            borderBottomColor: colors.dark,
-            backgroundColor:
-              selectedKey === key
-                ? alpha("dark", "thin")
-                : alpha("dark", "thick"),
+            borderTopWidth: 2,
+            borderBottomWidth: 2,
+            borderColor: key === selectedKey ? colors.primary : colors.clear,
             marginBottom: 2,
             paddingHorizontal: 10,
-            paddingVertical: 5,
           }}
         >
           <Text
             style={{
-              fontSize: sizes.fonts.large,
-              fontWeight: "bold",
+              textAlign: "center",
+              fontSize: sizes.fonts.small,
             }}
           >
             {name}
@@ -78,15 +78,28 @@ const Selection = (props: SelectionProps) => {
   };
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <PressableTextButton
-        disabled={disabled}
-        text={
-          data[selectedKey]?.name ? data[selectedKey].name : "data loading..."
-        }
-        onPress={() => {
-          setIsOpen(true);
-        }}
-      />
+      {customButton ? (
+        <Pressable
+          onPress={() => {
+            setIsOpen(true);
+          }}
+        >
+          {customButton}
+        </Pressable>
+      ) : (
+        <PressableTextButton
+          border={border}
+          color={data[selectedKey]?.color}
+          disabled={disabled}
+          text={
+            data[selectedKey]?.name ? data[selectedKey].name : "data loading..."
+          }
+          onPress={() => {
+            setIsOpen(true);
+          }}
+        />
+      )}
+
       <CommonModal
         title={title}
         visible={isOpen}
@@ -108,7 +121,11 @@ const Selection = (props: SelectionProps) => {
           {loading ? (
             <ActivityIndicator color={colors.primary} />
           ) : (
-            <FlatList data={flatListData} renderItem={SelectionRow} />
+            <FlatList
+              style={{ width: "100%" }}
+              data={flatListData}
+              renderItem={SelectionRow}
+            />
           )}
         </View>
       </CommonModal>
