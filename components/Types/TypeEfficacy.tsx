@@ -90,6 +90,7 @@ const TypeEfficacy = ({ firstType, secondType }: TypeEfficacyProps) => {
         />
         <EfficacyDisplay leadType={firstType} data={attackingEfficacies[0]} />
         <EfficacyDisplay leadType={secondType} data={attackingEfficacies[1]} />
+        <View style={{ height: 20 }}></View>
       </ScrollView>
     </View>
   );

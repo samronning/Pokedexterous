@@ -12,7 +12,14 @@ const colors = {
   red: "#ff0000",
   yellow: "#ffff00",
   clear: "#ffffff00",
+  warningLight: "#ffb74d",
+  warningDark: "#f57c00",
+  warningMain: "#ffa726",
+  infoLight: "#4fc3f7",
+  infoDark: "#0288d1",
+  infoMain: "#29b6f6",
 };
+type Color = keyof typeof colors;
 
 type Thickness = "thin" | "medium" | "thick" | undefined;
 const alpha = (color: keyof typeof colors, thickness: Thickness) => {
@@ -30,4 +37,4 @@ const alphaRaw = (rawColor: string, thickness: Thickness) => {
   }
 };
 export default colors;
-export { alpha, alphaRaw };
+export { alpha, alphaRaw, Color };

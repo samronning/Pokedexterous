@@ -8,21 +8,24 @@ type TypeBoxProps = {
   typeName: TypeName;
   style?: ViewStyle;
   efficacy?: number;
+  button?: boolean;
 };
 const TypeBox = memo((props: TypeBoxProps) => {
-  const { typeName, style, efficacy } = props;
+  const { typeName, style, efficacy, button } = props;
+  const shouldRenderEfficacy = ![undefined, 1].includes(efficacy);
   return (
     <View
       style={{
         backgroundColor: types[typeName].color,
         marginVertical: 2,
-        width: efficacy !== undefined ? 100 : 80,
+        width: efficacy !== undefined ? 100 : button ? 150 : 80,
         padding: 3,
         paddingHorizontal: 5,
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 50,
+        borderWidth: button ? 4 : 0,
         borderColor: colors.black,
         ...style,
       }}
@@ -30,12 +33,12 @@ const TypeBox = memo((props: TypeBoxProps) => {
       <Text
         style={{
           color: types[typeName].darkText ? colors.black : colors.white,
-          fontSize: sizes.fonts.tiny,
+          fontSize: button ? sizes.fonts.large : sizes.fonts.tiny,
           fontWeight: "bold",
         }}
       >
         {typeName.toUpperCase()}
-        {efficacy && efficacy !== 1 && ` | ${efficacy}`}
+        {shouldRenderEfficacy && ` | ${efficacy}`}
       </Text>
     </View>
   );

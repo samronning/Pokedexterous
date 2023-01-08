@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import Alert from "../Common/Alert";
 import React from "react";
 import { TypeName } from "../Type/Types";
 import { TypeEfficacyObject } from "./TypeEfficacy";
@@ -76,7 +77,7 @@ const EfficacyBody = (props: EfficacyBodyProps) => {
           );
         })
       ) : (
-        <Text>Select A Type</Text>
+        <Alert kind="warning">Nothing selected.</Alert>
       )}
     </View>
   );
@@ -127,8 +128,9 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-between",
     borderBottomColor: colors.primary,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     paddingBottom: 2,
+    paddingHorizontal: 10,
   },
   typeBoxStyle: {
     marginHorizontal: 2,
@@ -142,20 +144,19 @@ const styles = StyleSheet.create({
   },
   efficacyDisplayContainer: {
     alignItems: "center",
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: colors.primary,
     borderRadius: 10,
-    padding: 10,
     marginTop: 20,
   },
   efficacyGroupContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
+    paddingBottom: 10,
   },
   efficacyGroupHeadingText: {
     textAlign: "center",
     fontWeight: "bold",
-    marginVertical: 10,
   },
 });

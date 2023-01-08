@@ -17,7 +17,7 @@ const TypeSelection = (props: TypeSelectionProps) => {
   return (
     <View>
       <Selection
-        customButton={<TypeBox typeName={selectedType} />}
+        customButton={<TypeBox typeName={selectedType} button />}
         disabled={!isFirstType && otherType === "none"}
         disabledKey={otherType !== "none" ? otherType : ""}
         selectedKey={selectedType}
