@@ -18,11 +18,11 @@ const MainMenu = (props: MainMenuProps) => {
   const transYValRef = useRef(new Animated.Value(-100));
 
   const openAnim = Animated.spring(transYValRef.current, {
-    toValue: hasRowInteraction ? -260 : -150,
+    toValue: -150,
     useNativeDriver: true,
   });
   const closeAnim = Animated.spring(transYValRef.current, {
-    toValue: hasRowInteraction ? -100 : 20,
+    toValue: 20,
     useNativeDriver: true,
   });
 

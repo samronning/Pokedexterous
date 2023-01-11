@@ -39,7 +39,7 @@ export default function App() {
         <View
           style={{
             position: "absolute",
-            bottom: hasRowInteraction ? 240 : 70,
+            bottom: 60,
             top: 60,
             width: "100%",
           }}
@@ -47,6 +47,7 @@ export default function App() {
           <View style={{ flex: 1 }}>
             <Text style={commonstyles.title}>{page?.toUpperCase()}</Text>
             <DisplayPage page={page} />
+            {hasRowInteraction && <RowInteraction page={page} />}
           </View>
         </View>
         <MainMenu
@@ -54,7 +55,6 @@ export default function App() {
           hasRowInteraction={hasRowInteraction}
           onSelectPage={setPage}
         />
-        {hasRowInteraction && <RowInteraction page={page} />}
         {hasRowInteraction && <FilterIndicator page={page} />}
         <Loading />
       </View>

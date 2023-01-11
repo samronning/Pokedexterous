@@ -94,6 +94,10 @@ const Selection = (props: SelectionProps) => {
           text={
             data[selectedKey]?.name ? data[selectedKey].name : "data loading..."
           }
+          onPress={() => {
+            setIsOpen(true);
+          }}
+          disabled={disabled}
         />
       )}
 

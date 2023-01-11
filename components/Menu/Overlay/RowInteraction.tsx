@@ -12,20 +12,20 @@ This component determines which (if any) overlays to display depending on the pa
 const RowInteraction = ({ page }: { page: Page }) => {
   return (
     <View style={styles.overlayMenu}>
-      <Search page={page} />
       <View style={styles.rowInteractionButtons}>
         <ViewModal />
         <FilterModal />
         <SortModal page={page} />
       </View>
+      <Search page={page} />
     </View>
   );
 };
 const styles = StyleSheet.create({
   overlayMenu: {
     position: "absolute",
-    paddingBottom: Platform.OS === "ios" ? 20 : 0,
-    bottom: 0,
+    paddingBottom: 10,
+    bottom: -10,
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",
