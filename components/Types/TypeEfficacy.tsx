@@ -28,8 +28,9 @@ const efficaciesReducer = (
     //For defending, when the defender is the selected type(s)
     if (searchType(cur.defender_name)) {
       //When there is already information on the defender, multiply it
-      if (acc[cur.attacker_name]) {
-        const multiplied = Number(acc[cur.attacker_name]) * cur.damage_factor;
+      if (acc[cur.attacker_name] !== undefined) {
+        const multiplied =
+          Number(acc[cur.attacker_name]) * Number(cur.damage_factor);
         return { ...acc, [cur.attacker_name]: multiplied };
       }
       //There isn't information yet, so just create it
