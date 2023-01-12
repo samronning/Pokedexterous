@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     justifyContent: "space-between",
-    borderBottomColor: colors.primary,
+    borderBottomColor: colors.black,
     borderBottomWidth: 1,
     paddingBottom: 2,
     paddingHorizontal: 10,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   efficacyDisplayContainer: {
     alignItems: "center",
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: colors.black,
     borderRadius: 10,
     marginTop: 20,
   },
