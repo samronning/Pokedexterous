@@ -10,6 +10,7 @@ import Loading from "./components/Loading";
 import FilterIndicator from "./components/Menu/FilterIndicator";
 import RowInteraction from "./components/Menu/Overlay/RowInteraction";
 import Types from "./screens/Types";
+import Natures from "./screens/Natures";
 
 type Page = "Pokedex" | "Moves" | "Natures" | "Types" | "Abilities" | "Items";
 
@@ -21,6 +22,8 @@ const DisplayPage = ({ page }: { page: Page }) => {
       return <Moves />;
     case "Types":
       return <Types />;
+    case "Natures":
+      return <Natures />;
     default:
       return (
         <View style={commonstyles.centeredView}>

@@ -148,6 +148,8 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     borderRadius: 10,
     marginTop: 20,
+    backgroundColor: colors.light,
+    marginHorizontal: 20,
   },
   efficacyGroupContainer: {
     flexDirection: "row",

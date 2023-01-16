@@ -83,7 +83,7 @@ const TypeEfficacy = ({ firstType, secondType }: TypeEfficacyProps) => {
   }, [firstType, secondType]);
   return (
     <View style={styles.viewContainer}>
-      <ScrollView style={{ width: "90%" }}>
+      <ScrollView style={{ width: "100%" }}>
         <EfficacyDisplay
           leadType={firstType}
           secondaryType={secondType}

@@ -31,5 +31,14 @@ const commonstyles = StyleSheet.create({
     fontSize: sizes.fonts.huge,
     marginHorizontal: 10,
   },
+  darkSubtitle: {
+    color: colors.black,
+    fontWeight: "bold",
+    fontSize: sizes.fonts.large,
+  },
+  darkText: {
+    color: colors.black,
+    fontSize: sizes.fonts.medium,
+  },
 });
 export default commonstyles;

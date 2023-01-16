@@ -14,6 +14,10 @@ const resources = {
     resource: require("./typeEfficacyByTypeName.sql"),
     fileName: "./typeEfficacyByTypeName.sql",
   },
+  natures: {
+    resource: require("./natures.sql"),
+    fileName: "natures.sql",
+  },
 };
 
 async function readSqlFile(

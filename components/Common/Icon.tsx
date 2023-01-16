@@ -1,10 +1,4 @@
-import {
-  View,
-  Animated,
-  TransformsStyle,
-  Text,
-  RotateTransform,
-} from "react-native";
+import { View, Animated, Text, RotateTransform } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";

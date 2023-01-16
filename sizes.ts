@@ -1,5 +1,6 @@
 const sizes = {
   icon: {
+    tiny: 18,
     small: 30,
     medium: 50,
     large: 80,
