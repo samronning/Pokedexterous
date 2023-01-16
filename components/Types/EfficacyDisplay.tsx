@@ -6,6 +6,7 @@ import { TypeEfficacyObject } from "./TypeEfficacy";
 import { TypeBox } from "../Type/TypeRender";
 import sizes from "../../sizes";
 import colors from "../../colors";
+import commonstyles from "../../commonstyles";
 
 type EfficacyGroupProps = { data: TypeEfficacyObject };
 const EfficacyGroup = (props: EfficacyGroupProps) => {
@@ -144,12 +145,7 @@ const styles = StyleSheet.create({
   },
   efficacyDisplayContainer: {
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: colors.black,
-    borderRadius: 10,
-    marginTop: 20,
-    backgroundColor: colors.light,
-    marginHorizontal: 20,
+    ...commonstyles.entryContainer,
   },
   efficacyGroupContainer: {
     flexDirection: "row",

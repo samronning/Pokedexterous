@@ -11,6 +11,7 @@ import FilterIndicator from "./components/Menu/FilterIndicator";
 import RowInteraction from "./components/Menu/Overlay/RowInteraction";
 import Types from "./screens/Types";
 import Natures from "./screens/Natures";
+import Abilities from "./screens/Abilities";
 
 type Page = "Pokedex" | "Moves" | "Natures" | "Types" | "Abilities" | "Items";
 
@@ -24,6 +25,8 @@ const DisplayPage = ({ page }: { page: Page }) => {
       return <Types />;
     case "Natures":
       return <Natures />;
+    case "Abilities":
+      return <Abilities />;
     default:
       return (
         <View style={commonstyles.centeredView}>
@@ -35,7 +38,7 @@ const DisplayPage = ({ page }: { page: Page }) => {
 
 export default function App() {
   const [page, setPage] = useState<Page>("Pokedex");
-  const hasRowInteraction = page !== "Types" && page !== "Natures";
+  const hasRowInteraction = page === "Pokedex";
   return (
     <Provider store={store}>
       <View style={{ flex: 1, backgroundColor: colors.primary }}>

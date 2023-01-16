@@ -38,10 +38,8 @@ export default NatureListItem;
 
 const styles = StyleSheet.create({
   container: {
+    ...commonstyles.entryContainer,
     alignItems: "center",
-    backgroundColor: colors.light,
-    margin: 5,
-    borderRadius: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },

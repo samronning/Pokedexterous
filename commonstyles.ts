@@ -40,5 +40,11 @@ const commonstyles = StyleSheet.create({
     color: colors.black,
     fontSize: sizes.fonts.medium,
   },
+  entryContainer: {
+    backgroundColor: colors.light,
+    borderRadius: 10,
+    margin: 5,
+    marginTop: 0,
+  },
 });
 export default commonstyles;

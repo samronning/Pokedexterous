@@ -18,6 +18,10 @@ const resources = {
     resource: require("./natures.sql"),
     fileName: "natures.sql",
   },
+  abilities: {
+    resource: require("./abilities.sql"),
+    fileName: "abilities.sql",
+  },
 };
 
 async function readSqlFile(

@@ -8,6 +8,7 @@ import sizes from "../../sizes";
 import { padNumberZeroes } from "../../helper";
 import Stats from "../Stats/Stats";
 import { memo } from "react";
+import commonstyles from "../../commonstyles";
 
 type PokedexEntry = {
   name: string;
@@ -71,13 +72,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   entryContainer: {
-    backgroundColor: colors.light,
+    ...commonstyles.entryContainer,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: colors.primary,
   },
 });
 
