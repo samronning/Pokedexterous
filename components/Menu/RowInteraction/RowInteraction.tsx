@@ -1,35 +1,30 @@
-import { View, StyleSheet, Platform } from "react-native";
-import Search from "./Search";
+import { View, StyleSheet } from "react-native";
 import FilterModal from "./Filter/FilterModal";
 import SortModal from "./Sort/SortModal";
 import ViewModal from "./View/ViewModal";
-import colors, { alpha } from "../../../colors";
-import { Page } from "../../../App";
+import colors from "../../../colors";
 
 /*
 This component determines which (if any) overlays to display depending on the page
 */
-const RowInteraction = ({ page }: { page: Page }) => {
+const RowInteraction = () => {
   return (
     <View style={styles.overlayMenu}>
       <View style={styles.rowInteractionButtons}>
         <ViewModal />
         <FilterModal />
-        <SortModal page={page} />
+        <SortModal />
       </View>
-      <Search page={page} />
     </View>
   );
 };
 const styles = StyleSheet.create({
   overlayMenu: {
-    position: "absolute",
-    paddingBottom: 10,
-    bottom: -10,
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: colors.primary,
+    paddingVertical: 5,
   },
   rowInteractionButtons: {
     flexDirection: "row",

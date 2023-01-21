@@ -2,15 +2,10 @@ import { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Icon from "../Common/Icon";
 import IconButton from "../Common/IconButton";
-import {
-  pageToCategoryMap,
-  Category,
-} from "./Overlay/Sort/Categories/Categories";
+import { Category } from "./RowInteraction/Sort/Categories/Categories";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { selectSort, setSort } from "../../slices/sort";
-import { Page } from "../../App";
-const FilterIndicator = (props: { page: Page }) => {
-  const { page } = props;
+const FilterIndicator = ({ category }: { category: Category[] }) => {
   const sortObj = useAppSelector(selectSort);
   const dispatch = useAppDispatch();
   const [chosenCategoryInfo, setChosenCategoryInfo] = useState<
@@ -18,11 +13,11 @@ const FilterIndicator = (props: { page: Page }) => {
   >(null);
 
   useEffect(() => {
-    const newInfo = pageToCategoryMap[page]?.find((categoryInfo) => {
+    const newInfo = category?.find((categoryInfo) => {
       return categoryInfo.column === sortObj.column;
     });
     setChosenCategoryInfo(newInfo);
-  }, [page, sortObj]);
+  }, [sortObj]);
   return chosenCategoryInfo ? (
     <View style={styles.filterIndicatorContainer}>
       <Icon
@@ -52,7 +47,7 @@ const styles = StyleSheet.create({
   filterIndicatorContainer: {
     flexDirection: "row",
     position: "absolute",
-    top: 62,
+    top: -40,
     right: 0,
     padding: 0,
   },

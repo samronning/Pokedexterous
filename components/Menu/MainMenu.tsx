@@ -6,13 +6,11 @@ import NavigationList from "./NavigationList";
 import { Page } from "../../App";
 
 type MainMenuProps = {
-  page: Page;
-  hasRowInteraction: boolean;
   onSelectPage: React.Dispatch<React.SetStateAction<Page>>;
 };
 
 const MainMenu = (props: MainMenuProps) => {
-  const { page, hasRowInteraction, onSelectPage } = props;
+  const { onSelectPage } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const transYValRef = useRef(new Animated.Value(-100));
@@ -32,7 +30,7 @@ const MainMenu = (props: MainMenuProps) => {
     } else {
       openAnim.start();
     }
-  }, [isOpen, hasRowInteraction]);
+  }, [isOpen]);
 
   return (
     <View style={styles.menuOverlay}>

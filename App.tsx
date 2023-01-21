@@ -7,8 +7,6 @@ import colors from "./colors";
 import { Provider } from "react-redux";
 import store from "./store";
 import Loading from "./components/Loading";
-import FilterIndicator from "./components/Menu/FilterIndicator";
-import RowInteraction from "./components/Menu/Overlay/RowInteraction";
 import Types from "./screens/Types";
 import Natures from "./screens/Natures";
 import Abilities from "./screens/Abilities";
@@ -38,30 +36,28 @@ const DisplayPage = ({ page }: { page: Page }) => {
 
 export default function App() {
   const [page, setPage] = useState<Page>("Pokedex");
-  const hasRowInteraction = page === "Pokedex";
   return (
     <Provider store={store}>
-      <View style={{ flex: 1, backgroundColor: colors.primary }}>
+      <View
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: colors.primary,
+        }}
+      >
         <View
           style={{
+            flex: 1,
+            top: 40,
+            bottom: 70,
             position: "absolute",
-            bottom: 60,
-            top: 60,
             width: "100%",
           }}
         >
-          <View style={{ flex: 1 }}>
-            <Text style={commonstyles.title}>{page?.toUpperCase()}</Text>
-            <DisplayPage page={page} />
-            {hasRowInteraction && <RowInteraction page={page} />}
-          </View>
+          <Text style={commonstyles.title}>{page?.toUpperCase()}</Text>
+          <DisplayPage page={page} />
         </View>
-        <MainMenu
-          page={page}
-          hasRowInteraction={hasRowInteraction}
-          onSelectPage={setPage}
-        />
-        {hasRowInteraction && <FilterIndicator page={page} />}
+        <MainMenu onSelectPage={setPage} />
         <Loading />
       </View>
     </Provider>

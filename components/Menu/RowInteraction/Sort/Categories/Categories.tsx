@@ -1,14 +1,8 @@
-import { Page } from "../../../../../App";
 import { View } from "react-native";
 import IconButton, { IconName } from "../../../../Common/IconButton";
-import pokedexCategories from "./Pokedex";
 import { SortColumn } from "../../../../../slices/sort";
 import { useAppSelector, useAppDispatch } from "../../../../../hooks/redux";
 import { selectSort, setSort } from "../../../../../slices/sort";
-
-const pageToCategoryMap: Partial<Record<Page, CategoryList>> = {
-  Pokedex: pokedexCategories,
-};
 
 const CategoryRender = ({
   categoryList,
@@ -55,15 +49,9 @@ type Category = {
 
 type CategoryList = Category[];
 
-const Categories = ({ page }: { page: Page }) => {
-  switch (page) {
-    case "Pokedex": {
-      return <CategoryRender categoryList={pageToCategoryMap[page]} />;
-    }
-    default:
-      return null;
-  }
+const Categories = ({ categoryList }: { categoryList: CategoryList }) => {
+  return <CategoryRender categoryList={categoryList} />;
 };
 
 export default Categories;
-export { Category, CategoryList, pageToCategoryMap };
+export { Category, CategoryList };

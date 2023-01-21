@@ -1,17 +1,20 @@
 import { useState, useEffect, Dispatch } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import EntryRender from "../components/Pokedex/EntryRender";
 import { PokedexEntry } from "../components/Pokedex/Entry";
 import { SQLTransaction } from "expo-sqlite";
 import openDatabase from "../db";
 import readSqlFile from "../sql/readSql";
 import { selectGeneration } from "../slices/generation";
-import { selectSearch } from "../slices/search";
 import { selectSort, SortColumn, SortDirection } from "../slices/sort";
 import { setLoading } from "../slices/loading";
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
 import { debounce } from "lodash";
 import { AppDispatch } from "../store";
+import Search from "../components/Menu/Search";
+import RowInteraction from "../components/Menu/RowInteraction/RowInteraction";
+import FilterIndicator from "../components/Menu/FilterIndicator";
+import pokedexCategories from "../components/Menu/RowInteraction/Sort/Categories/Pokedex";
 
 const doQuery = async (
   selectedGeneration: number | string,
@@ -53,7 +56,7 @@ const debouncedDoQuery = debounce(doQuery, 800);
 const Pokedex = () => {
   const [pokedexEntries, setPokedexEntries] = useState<PokedexEntry[]>([]);
   const selectedGeneration = useAppSelector(selectGeneration);
-  const searchTerm = useAppSelector(selectSearch);
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const sortObj = useAppSelector(selectSort);
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -67,8 +70,11 @@ const Pokedex = () => {
     );
   }, [selectedGeneration, searchTerm, sortObj]);
   return (
-    <View>
+    <View style={{ flex: 1 }}>
+      <FilterIndicator category={pokedexCategories} />
       <EntryRender pokedexEntries={pokedexEntries} />
+      <RowInteraction />
+      <Search term={searchTerm} setTerm={setSearchTerm} />
     </View>
   );
 };

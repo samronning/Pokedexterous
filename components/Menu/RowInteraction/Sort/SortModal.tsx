@@ -1,11 +1,11 @@
 import IconModal from "../../../Common/IconModal";
 import GlossaryItem from "../../../Common/GlossaryItem";
 import Categories from "./Categories/Categories";
+import pokedexCategories from "./Categories/Pokedex";
 import Direction from "./Direction";
-import { Page } from "../../../../App";
 import { View } from "react-native";
 
-const SortModal = ({ page }: { page: Page }) => {
+const SortModal = () => {
   return (
     <IconModal iconName="sort" color="light" title="Sort" size="small">
       <View
@@ -21,7 +21,7 @@ const SortModal = ({ page }: { page: Page }) => {
         </GlossaryItem>
         <View style={{ marginVertical: 20 }}>
           <GlossaryItem heading="Categories" size="large">
-            <Categories page={page} />
+            <Categories categoryList={pokedexCategories} />
           </GlossaryItem>
         </View>
       </View>
