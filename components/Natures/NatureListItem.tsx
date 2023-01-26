@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Nature } from "../../screens/Natures";
 import React from "react";
-import colors from "../../colors";
 import commonstyles from "../../commonstyles";
 import Icon from "../Common/Icon";
 type NatureListItemProps = { nature: Nature };

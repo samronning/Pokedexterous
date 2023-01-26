@@ -48,7 +48,6 @@ const Abilities = () => {
           offset: POKE_ITEM_HEIGHT * index,
           index,
         })}
-        maxToRenderPerBatch={10}
       />
     </View>
   );
