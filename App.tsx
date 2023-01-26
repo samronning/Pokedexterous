@@ -10,6 +10,7 @@ import Loading from "./components/Loading";
 import Types from "./screens/Types";
 import Natures from "./screens/Natures";
 import Abilities from "./screens/Abilities";
+import Items from "./screens/Items";
 
 type Page = "Pokedex" | "Moves" | "Natures" | "Types" | "Abilities" | "Items";
 
@@ -25,6 +26,8 @@ const DisplayPage = ({ page }: { page: Page }) => {
       return <Natures />;
     case "Abilities":
       return <Abilities />;
+    case "Items":
+      return <Items />;
     default:
       return (
         <View style={commonstyles.centeredView}>

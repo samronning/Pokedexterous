@@ -22,6 +22,10 @@ const resources = {
     resource: require("./abilities.sql"),
     fileName: "abilities.sql",
   },
+  items: {
+    resource: require("./items.sql"),
+    fileName: "items.sql",
+  },
 };
 
 async function readSqlFile(
