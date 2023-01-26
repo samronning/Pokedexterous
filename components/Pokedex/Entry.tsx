@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   entryContainer: {
-    ...commonstyles.entryContainer,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
