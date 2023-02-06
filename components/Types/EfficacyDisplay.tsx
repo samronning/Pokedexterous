@@ -7,6 +7,7 @@ import { TypeBox } from "../Type/TypeRender";
 import sizes from "../../sizes";
 import colors from "../../colors";
 import commonstyles from "../../commonstyles";
+import { isEmpty } from "lodash";
 
 type EfficacyGroupProps = { data: TypeEfficacyObject };
 const EfficacyGroup = (props: EfficacyGroupProps) => {
@@ -57,24 +58,26 @@ const EfficacyBody = (props: EfficacyBodyProps) => {
   const highText = isDefense ? "Frail Against" : "Strong Against";
   const mediumText = "Average Damage";
   const lowText = isDefense ? "Sturdy Against" : "Weak Against";
-  type GroupDef = { text: string; dataKey: GroupKey };
-  const [lowDef, mediumDef, highDef] = [
-    { text: lowText, dataKey: "low" },
-    { text: mediumText, dataKey: "medium" },
-    { text: highText, dataKey: "high" },
+  type GroupDef = { text: string; groupKey: GroupKey };
+  const [lowSchema, mediumSchema, highSchema] = [
+    { text: lowText, groupKey: "low" },
+    { text: mediumText, groupKey: "medium" },
+    { text: highText, groupKey: "high" },
   ] as Array<GroupDef>;
   const order = isDefense
-    ? [lowDef, highDef, mediumDef]
-    : [highDef, lowDef, mediumDef];
+    ? [lowSchema, highSchema, mediumSchema]
+    : [highSchema, lowSchema, mediumSchema];
   return (
     <View>
       {display ? (
-        order.map(({ text, dataKey }) => {
+        order.map(({ text, groupKey }) => {
           return (
-            <View key={text}>
-              <Text style={styles.efficacyGroupHeadingText}>{text}</Text>
-              <EfficacyGroup data={groupedEfficacies[dataKey]} />
-            </View>
+            !isEmpty(groupedEfficacies[groupKey]) && (
+              <View key={text}>
+                <Text style={styles.efficacyGroupHeadingText}>{text}</Text>
+                <EfficacyGroup data={groupedEfficacies[groupKey]} />
+              </View>
+            )
           );
         })
       ) : (
