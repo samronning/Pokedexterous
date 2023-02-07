@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, ViewStyle } from "react-native";
 import colors, { Color } from "../../colors";
 import sizes from "../../sizes";
 
@@ -9,14 +9,28 @@ type GlossaryItemProps = {
   direction?: "column" | "row";
   underline?: boolean;
   color?: Color;
+  margin?: ViewStyle["margin"];
+  justifyContent?: ViewStyle["justifyContent"];
 };
 const GlossaryItem = (props: GlossaryItemProps) => {
-  const { heading, children, direction, size, underline, color } = props;
+  const {
+    heading,
+    children,
+    direction,
+    size,
+    underline,
+    color,
+    margin,
+    justifyContent,
+  } = props;
   return (
     <View
       style={{
         flexDirection: direction || "column",
         alignItems: "center",
+        margin: margin,
+        justifyContent: justifyContent,
+        width: "100%",
       }}
     >
       <Text
