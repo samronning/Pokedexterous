@@ -3,6 +3,7 @@ import generationReducer from "./slices/generation";
 import searchReducer from "./slices/search";
 import sortReducer from "./slices/sort";
 import loadingReducer from "./slices/loading";
+import typeReducer from "./slices/type";
 // ...
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     searchReducer,
     sortReducer,
     loadingReducer,
+    typeReducer,
   },
 });
 

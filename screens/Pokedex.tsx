@@ -15,12 +15,16 @@ import Search from "../components/Menu/Search";
 import RowInteraction from "../components/Menu/RowInteraction/RowInteraction";
 import FilterIndicator from "../components/Menu/FilterIndicator";
 import pokedexCategories from "../components/Menu/RowInteraction/Sort/Categories/Pokedex";
+import { TypeName } from "../components/Type/Types";
+import { selectType } from "../slices/type";
 
 const doQuery = async (
   selectedGeneration: number | string,
   searchTerm: string,
   sortColumn: SortColumn,
   sortDirection: SortDirection,
+  type1: TypeName | "",
+  type2: TypeName | "",
   setPokedexEntries: Dispatch<PokedexEntry[]>,
   dispatch: AppDispatch
 ) => {
@@ -32,7 +36,14 @@ const doQuery = async (
       (sqlTransaction: SQLTransaction) => {
         sqlTransaction.executeSql(
           sqlStatement + ` order by ${sortColumn} ${sortDirection}`,
-          [selectedGeneration, selectedGeneration, searchTerm, searchTerm],
+          [
+            selectedGeneration,
+            selectedGeneration,
+            searchTerm,
+            searchTerm,
+            type1,
+            type2,
+          ],
           (_, res) => {
             setPokedexEntries(res.rows._array);
             dispatch(setLoading(false));
@@ -56,6 +67,9 @@ const debouncedDoQuery = debounce(doQuery, 800);
 const Pokedex = () => {
   const [pokedexEntries, setPokedexEntries] = useState<PokedexEntry[]>([]);
   const selectedGeneration = useAppSelector(selectGeneration);
+  const types = useAppSelector(selectType);
+  const setNoneToEmpty = (type: TypeName): TypeName | "" =>
+    type === "none" ? "" : type;
   const [searchTerm, setSearchTerm] = useState<string>("");
   const sortObj = useAppSelector(selectSort);
   const dispatch = useAppDispatch();
@@ -65,10 +79,12 @@ const Pokedex = () => {
       searchTerm,
       sortObj.column,
       sortObj.direction,
+      setNoneToEmpty(types.type1),
+      setNoneToEmpty(types.type2),
       setPokedexEntries,
       dispatch
     );
-  }, [selectedGeneration, searchTerm, sortObj]);
+  }, [selectedGeneration, searchTerm, sortObj, types.type1, types.type2]);
   return (
     <View style={{ flex: 1 }}>
       <FilterIndicator category={pokedexCategories} />

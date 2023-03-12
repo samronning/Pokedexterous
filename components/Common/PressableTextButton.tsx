@@ -4,11 +4,12 @@ import colors from "../../colors";
 type PressableTextButtonProps = PressableProps & {
   text: string;
   color?: string;
+  textColor?: string;
   border?: boolean;
   disabled?: boolean;
 };
 const PressableTextButton = (props: PressableTextButtonProps) => {
-  const { text, border, color, ...other } = props;
+  const { text, border, color, textColor, ...other } = props;
   return (
     <Pressable
       style={{
@@ -20,7 +21,7 @@ const PressableTextButton = (props: PressableTextButtonProps) => {
       }}
       {...other}
     >
-      <Text>{text}</Text>
+      <Text style={{ color: textColor}}>{text}</Text>
     </Pressable>
   );
 };

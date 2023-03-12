@@ -104,6 +104,9 @@ from
                     p.id
             ) as speciesandtypes
             join pokemon_v2_pokemonstat as s on s.pokemon_id = speciesandtypes.pokemon_id
+        where
+            type_names like '%' || ? || '%'
+            and type_names like '%' || ? || '%'
         group by
             speciesandtypes.pokemon_id
     )

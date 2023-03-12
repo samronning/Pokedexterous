@@ -90,6 +90,9 @@ const Selection = (props: SelectionProps) => {
       ) : (
         <PressableTextButton
           border={border}
+          textColor={
+            data[selectedKey]?.darkText === false ? colors.white : colors.black
+          }
           color={data[selectedKey]?.color}
           text={
             data[selectedKey]?.name ? data[selectedKey].name : "data loading..."
