@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { FlatList } from "react-native";
 import Entry, { PokedexEntry } from "./Entry";
+import NoPokemonFound from "./NoPokemonFound";
 import ListEntryContainer, {
   ListEntryHeight,
 } from "../Common/ListEntryContainer";
@@ -23,6 +24,7 @@ const EntryRender = (props: EntryRenderProps) => {
       style={{ width: "100%" }}
       data={pokedexEntries}
       renderItem={renderItem}
+      ListEmptyComponent={NoPokemonFound}
       getItemLayout={(data, index) => ({
         length: POKEDEX_ENTRY_HEIGHT,
         offset: POKEDEX_ENTRY_HEIGHT * index,
