@@ -11,6 +11,7 @@ import Types from "./screens/Types";
 import Natures from "./screens/Natures";
 import Abilities from "./screens/Abilities";
 import Items from "./screens/Items";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type Page = "Pokedex" | "Moves" | "Natures" | "Types" | "Abilities" | "Items";
 

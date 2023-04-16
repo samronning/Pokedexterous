@@ -2,13 +2,12 @@ import TypeRender from "../Type/TypeRender";
 import { TypeName } from "../Type/Types";
 import PokemonSprite from "./PokemonSprite";
 import { View, Text, StyleSheet } from "react-native";
-import colors, { alpha } from "../../colors";
-import types from "../Type/Types";
+import colors from "../../colors";
 import sizes from "../../sizes";
 import { padNumberZeroes } from "../../helper";
 import Stats from "../Stats/Stats";
 import { memo } from "react";
-import commonstyles from "../../commonstyles";
+import EntryWrapper from "./EntryWrapper";
 
 type PokedexEntry = {
   name: string;
@@ -30,22 +29,24 @@ const Entry = (props: { pokedexEntry: PokedexEntry }) => {
   };
   const [typeName1, typeName2] = getTypeNames(type_names);
   return (
-    <View style={styles.entryContainer}>
-      <View style={styles.dataContainer}>
-        <View style={styles.basicDataContainer}>
-          <Text style={styles.pokemonName}>
-            {name[0].toUpperCase() + name.slice(1)}
-          </Text>
-          <Text style={styles.pokemonDexNumber}>{`#${padNumberZeroes(
-            dex_number,
-            4
-          )}`}</Text>
-          <TypeRender typeName1={typeName1} typeName2={typeName2} />
-        </View>
-        <Stats stats={base_stats.split(",").map((str) => Number(str))} />
-      </View>
-      <PokemonSprite pokemonSpeciesName={name} />
-    </View>
+    <EntryWrapper>
+      {[
+        <View key="entryData" style={styles.dataContainer}>
+          <View style={styles.basicDataContainer}>
+            <Text style={styles.pokemonName}>
+              {name[0].toUpperCase() + name.slice(1)}
+            </Text>
+            <Text style={styles.pokemonDexNumber}>{`#${padNumberZeroes(
+              dex_number,
+              4
+            )}`}</Text>
+            <TypeRender typeName1={typeName1} typeName2={typeName2} />
+          </View>
+          <Stats stats={base_stats.split(",").map((str) => Number(str))} />
+        </View>,
+        <PokemonSprite pokemonSpeciesName={name} key="entrySprite" />,
+      ]}
+    </EntryWrapper>
   );
 };
 
@@ -70,11 +71,6 @@ const styles = StyleSheet.create({
   basicDataContainer: {
     alignItems: "flex-start",
     paddingHorizontal: 10,
-  },
-  entryContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
 });
 

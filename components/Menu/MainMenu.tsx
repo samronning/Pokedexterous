@@ -33,7 +33,7 @@ const MainMenu = (props: MainMenuProps) => {
   }, [isOpen]);
 
   return (
-    <View style={styles.menuOverlay}>
+    <View style={styles.menuOverlay} pointerEvents="box-none">
       {isOpen && (
         <Pressable style={{ flex: 1 }} onPress={() => setIsOpen(false)} />
       )}
